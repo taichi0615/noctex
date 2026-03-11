@@ -10,16 +10,15 @@
   --black:#060608; --deep:#0a0a0e; --card:#0e0e12; --border:#1c1c26;
   --gold:#c8a84a; --gold-lt:#e6c96a; --gold-dim:rgba(200,168,74,.13);
   --white:#ede9e0; --muted:#50505c; --muted2:#82829a;
-  --red:#e03c3c; --green:#2ecc71;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{
   background:var(--black);color:var(--white);
-  font-family:'Noto Sans JP',sans-serif;font-weight:300;
+  font-family:'Noto Sans JP',sans-serif;font-weight:300; /* 全体をライトウェイトに */
   overflow-x:hidden;max-width:430px;margin:0 auto;
   border-left:1px solid var(--border);border-right:1px solid var(--border);
-  min-height:100vh;
+  min-height:100vh;padding-bottom:120px;
 }
 body::after{
   content:'';position:fixed;inset:0;
@@ -34,7 +33,7 @@ body::after{
   background:rgba(6,6,8,.92);backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;
+  padding:14px 20px; /* 余白を微増 */
 }
 .back-btn{
   display:flex;align-items:center;gap:10px;
@@ -42,7 +41,6 @@ body::after{
   font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;
   text-transform:uppercase;transition:color .2s;
 }
-.back-btn:active{color:var(--gold)}
 .back-arrow{font-size:18px;color:var(--gold);line-height:1}
 .nav-rank{
   font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;
@@ -50,10 +48,7 @@ body::after{
   background:var(--gold-dim);padding:5px 14px;
   border-radius:2px;
 }
-.nav-save{
-  font-size:22px;cursor:pointer;color:var(--muted2);
-  border:none;background:none;transition:color .2s,transform .2s;
-}
+.nav-save{ font-size:22px;cursor:pointer;color:var(--muted2);border:none;background:none; }
 .nav-save.saved{color:var(--gold);transform:scale(1.1)}
 
 /* ── HERO PHOTO ── */
@@ -131,7 +126,7 @@ body::after{
 }
 
 /* ── SECTION COMMON ── */
-.sec{padding:24px 20px}
+.sec{padding:28px 20px} /* 余白を増量 */
 .sec-lbl{
   font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;
   color:var(--gold);text-transform:uppercase;
@@ -143,10 +138,17 @@ body::after{
   letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:16px;
 }
 
+/* ── 可読性極限調整：DESCRIPTION ── */
+.desc-text{
+  font-size:12px;color:var(--muted2);
+  line-height:1.9; /* 行間を大幅に広げる */
+  letter-spacing:.3px;
+}
+.desc-text strong{color:var(--white);font-weight:400}
+
 /* ── PHOTO GALLERY ── */
 .gallery-scroll{
   display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
-  padding-bottom:5px;
 }
 .gallery-img{
   flex-shrink:0;width:220px;height:140px;
@@ -165,11 +167,10 @@ body::after{
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* ── FLOOR GUIDE ── */
+/* ── 可読性極限調整：FLOOR GUIDE ── */
 .floor-card{
   background:var(--card);border:1px solid var(--border);
   padding:20px;margin-bottom:4px;position:relative;
-  transition:border-color .3s;
 }
 .floor-card::before{
   content:'';position:absolute;left:0;top:0;bottom:0;
@@ -188,6 +189,58 @@ body::after{
 }
 .floor-desc{font-size:12px;color:var(--muted2);line-height:1.7}
 .floor-chevron{font-size:14px;color:var(--muted);transition:transform .3s ease;}
+.floor-card.open .floor-chevron{transform:rotate(180deg)}
+.floor-detail{
+  overflow:hidden;max-height:0;transition:max-height .4s ease;
+}
+.floor-card.open .floor-detail{max-height:250px}
+.floor-detail-inner{
+  border-top:1px solid var(--border);margin-top:14px;padding-top:14px;
+}
+.floor-detail-inner ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.floor-detail-inner ul li{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted2);line-height:1.7}
+.floor-detail-inner ul li::before{content:'—';color:var(--gold);font-family:'DM Mono',monospace;font-size:10px}
+
+/* ── 可読性極限調整：INFO TABLE ── */
+.info-table{width:100%;border-collapse:collapse}
+.info-table tr{border-bottom:1px solid var(--border)}
+.info-table tr:last-child{border-bottom:none}
+.info-table td{padding:13px 0;vertical-align:top} /* 上下の余白を増やす */
+.info-table td:first-child{
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:var(--muted);text-transform:uppercase;width:100px;padding-top:15px;
+}
+.info-table td:last-child{
+  font-size:12px;color:var(--white);line-height:1.8;
+  letter-spacing:.3px;
+}
+.info-badge{
+  display:inline-block;font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:1.5px;padding:4px 10px;
+  border-radius:2px;margin-right:5px;margin-bottom:5px;
+  text-transform:uppercase;
+  background:var(--gold-dim);border:1px solid rgba(200,168,74,.3);color:var(--gold);
+}
+.badge-gray{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted2)}
+
+/* ── 可読性極限調整：DRESS CODE / EVENTS ── */
+.dc-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:15px;
+  background:var(--card);border:1px solid var(--border);border-radius:2px;
+}
+.dc-text{font-size:12px;color:var(--muted2);line-height:1.8;letter-spacing:.3px}
+.dc-text strong{color:var(--white);font-weight:400}
+
+.event-row{
+  background:var(--card);border:1px solid var(--border);
+  padding:18px;display:flex;gap:15px;align-items:flex-start;margin-bottom:3px;
+}
+.event-month{font-family:'DM Mono';font-size:8px;letter-spacing:2px;color:var(--gold)}
+.event-day{font-family:'Bebas Neue';font-size:32px;line-height:1;color:var(--white)}
+.event-name{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;margin-bottom:6px}
+.event-detail{font-size:11px;line-height:1.7}
+.event-badge{font-family:'DM Mono';font-size:8px;padding:3px 8px;margin-top:6px}
 
 /* ── TAB BAR ── */
 .tab-bar{
@@ -203,30 +256,19 @@ body::after{
   justify-content:center;padding:10px 0;border:none;background:none;
   gap:4px;color:var(--muted2);text-decoration:none;
 }
-.ti-icon{font-size:20px; transition:color .2s}
+.ti-icon{font-size:20px;transition:color .2s}
 .ti-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase}
 .tab-item:active .ti-icon, .tab-item:active .ti-lbl{color:var(--gold)}
 
-/* ── CTA ── */
-.cta-box{
-  margin:20px 20px 120px;
-  background:var(--deep);border:1px solid rgba(200,168,74,.3);
-  padding:32px 24px;text-align:center;position:relative;overflow:hidden;
-  border-radius:2px;
-}
-.cta-btn{
-  display:block;width:100%;background:var(--gold);color:#000;border:none;
-  padding:16px;font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:4px;text-transform:uppercase;font-weight:600;
-  border-radius:2px;text-decoration:none;transition:background .2s;
-}
-
-/* ── NOCTEX SCORE DETAIL ── */
+/* ── SCORE BREAKDOWN / Ranking ── */
 .sdc-item{margin-bottom:12px}
-.sdc-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:6px}
-.sdc-fill{height:100%;background:var(--gold);width:0%;transition:width 1.2s ease .5s}
+.sdc-lbl{font-size:9px;width:80px}
+.sdc-track{height:4px}
+.ry-year{font-size:11px;width:50px}
+.ry-bar-wrap{height:4px}
+.ry-pos{font-size:22px}
 
-/* ── OTHERS ── */
+/* ── REVEAL ── */
 .divider{height:1px;background:var(--border);margin:0 20px}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .8s ease, transform .8s cubic-bezier(0.22, 1, 0.36, 1)}
 .rv.on{opacity:1;transform:translateY(0)}
@@ -242,7 +284,7 @@ body::after{
 </div>
 
 <div class="hero-photo">
-  <img src="https://images.unsplash.com/photo-1571266028243-d220c6a6f673?w=860&q=80" alt="WOMB Main Floor" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#04040e,#0a0820)'">
+  <img src="https://images.unsplash.com/photo-1571266028243-d220c6a6f673?w=860&q=80">
   <div class="hero-overlay"></div>
   <div class="hero-badge">NOCTEX CERTIFIED ★</div>
   <div class="hero-bottom">
@@ -255,26 +297,10 @@ body::after{
 <div class="score-section rv">
   <div class="sec-lbl">NOCTEX SCORE</div>
   <div class="score-grid" id="scoreGrid">
-    <div class="score-cell">
-      <span class="score-val" data-val="98">0</span>
-      <div class="score-bar-track"><div class="score-bar-fill" data-pct="98"></div></div>
-      <span class="score-lbl">SOUND</span>
-    </div>
-    <div class="score-cell">
-      <span class="score-val" data-val="85">0</span>
-      <div class="score-bar-track"><div class="score-bar-fill" data-pct="85"></div></div>
-      <span class="score-lbl">CROWD</span>
-    </div>
-    <div class="score-cell">
-      <span class="score-val" data-val="95">0</span>
-      <div class="score-bar-track"><div class="score-bar-fill" data-pct="95"></div></div>
-      <span class="score-lbl">VIBE</span>
-    </div>
-    <div class="score-cell">
-      <span class="score-val" data-val="75">0</span>
-      <div class="score-bar-track"><div class="score-bar-fill" data-pct="75"></div></div>
-      <span class="score-lbl">SERVICE</span>
-    </div>
+    <div class="score-cell"><span class="score-val" data-val="98">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="98"></div></div><span class="score-lbl">SOUND</span></div>
+    <div class="score-cell"><span class="score-val" data-val="85">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="85"></div></div><span class="score-lbl">CROWD</span></div>
+    <div class="score-cell"><span class="score-val" data-val="95">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="95"></div></div><span class="score-lbl">VIBE</span></div>
+    <div class="score-cell"><span class="score-val" data-val="75">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="75"></div></div><span class="score-lbl">SERVICE</span></div>
   </div>
 </div>
 
@@ -301,13 +327,15 @@ body::after{
   </div>
 </div>
 
+<div class="divider"></div>
+
 <div class="gallery rv">
-  <div class="sec-lbl" style="padding:20px 20px 12px">GALLERY</div>
+  <div class="sec-lbl" style="padding:24px 20px 14px">GALLERY</div>
   <div class="gallery-scroll">
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&q=75"><div class="gallery-img-label">2F MAIN FLOOR</div></div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=75"><div class="gallery-img-label">DJ BOOTH</div></div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=400&q=75"><div class="gallery-img-label">4F VIP LOUNGE</div></div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&q=75"><div class="gallery-img-label">CROWD</div></div>
+    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400"><div class="gallery-img-label">2F MAIN FLOOR</div></div>
+    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400"><div class="gallery-img-label">DJ BOOTH</div></div>
+    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=400"><div class="gallery-img-label">4F VIP LOUNGE</div></div>
+    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400"><div class="gallery-img-label">CROWD</div></div>
   </div>
 </div>
 
@@ -363,6 +391,7 @@ body::after{
 </div>
 
 <div class="divider"></div>
+
 <div class="sec rv">
   <div class="sec-lbl">SCHEDULE</div>
   <div class="sec-ttl">UPCOMING EVENTS</div>
@@ -380,10 +409,24 @@ body::after{
       </div>
       <div class="event-price">¥4,000</div>
     </div>
+    <div class="event-row">
+      <div class="event-date-col">
+        <div class="event-month">MAR</div>
+        <div class="event-day">29</div>
+        <div class="event-dow">SAT</div>
+      </div>
+      <div class="event-info">
+        <div class="event-name">PICNIC PEOPLE PANIC</div>
+        <div class="event-detail">Dark Psychedelic Techno Night<br>Open 23:00 — Close 05:00</div>
+        <span class="event-badge eb-blue">TECHNO</span>
+      </div>
+      <div class="event-price">¥3,500</div>
+    </div>
   </div>
 </div>
 
 <div class="divider"></div>
+
 <div class="sec rv">
     <div class="sec-lbl">WORLD RANKING HISTORY</div>
     <div class="sec-ttl">GLOBAL <span style="color:var(--gold)">RECORD</span></div>
@@ -394,6 +437,7 @@ body::after{
 </div>
 
 <div class="divider"></div>
+
 <div class="sec rv">
     <div class="sec-lbl">ESSENTIAL INFO</div>
     <table class="info-table">
@@ -405,11 +449,11 @@ body::after{
       <tr><td>GENRE</td><td><span class="info-badge badge-gold">TECHNO</span><span class="info-badge badge-gold">HOUSE</span><span class="info-badge badge-gray">EDM</span></td></tr>
       <tr><td>ACCESS</td><td>JR渋谷駅 徒歩10分<br>京王井の頭線 神泉駅 徒歩5分</td></tr>
       <tr><td>LOCKER</td><td>300個 · ¥300 / 回</td></tr>
-      <tr><td>PHONE</td><td>03-3408-1111</td></tr>
     </table>
 </div>
 
 <div class="divider"></div>
+
 <div class="sec rv">
     <div class="sec-lbl">ENTRY RULES</div>
     <div class="sec-ttl">DRESS CODE</div>
@@ -420,16 +464,17 @@ body::after{
       </div>
       <div class="dc-item">
         <span class="dc-icon">❌</span>
-        <div class="dc-text"><strong>入場不可（男性）：</strong>サンダル（クロックス）、タンクトップ、ジャージ、スウェット</div>
+        <div class="dc-text"><strong>入場不可（男性）：</strong>サンダル（クロックス）、タンクトップ、ジャージ、スウェットなどラフな服装</div>
       </div>
       <div class="dc-item">
         <span class="dc-icon">🪪</span>
-        <div class="dc-text"><strong>ID確認：</strong>全員に実施。運転免許証・パスポート・住基カードのみ</div>
+        <div class="dc-text"><strong>ID確認：</strong>全員に実施。運転免許証・パスポート・住基カードいずれか（コピー不可）</div>
       </div>
     </div>
 </div>
 
 <div class="divider"></div>
+
 <div class="sec rv">
     <div class="sec-lbl">ACCESS</div>
     <div class="sec-ttl">HOW TO GET THERE</div>
@@ -437,14 +482,14 @@ body::after{
       <span class="map-pin">📍</span>
       <div class="map-address"><strong>WOMB TOKYO</strong>東京都渋谷区円山町2-16 · JR渋谷駅 徒歩10分</div>
     </div>
-    <div style="margin-top:12px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:3px; font-size:11px; color:var(--muted2); line-height:1.8;">
+    <div style="margin-top:14px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:3px; font-size:12px; color:var(--muted2); line-height:1.9;">
         109を右手に道玄坂を5分登り、道玄坂上交番の先を斜め右前方に右折。坂の上のファミリーマート手前の路地を右折後、50m直進した右側のコンクリート打ちっぱなしの建物。
     </div>
 </div>
 
 <div class="cta-box rv">
     <h3>VIP予約は<span>会員限定</span></h3>
-    <p>テーブル先行案内・割引チケット・VIPマッチングはNOCTEX会員だけに届く。</p>
+    <p class="desc-text" style="margin-top:5px; margin-bottom:15px;">テーブル先行案内・割引チケット・VIPマッチングはNOCTEX会員だけに届く。</p>
     <a href="#" class="cta-btn" onclick="this.textContent='登録しました ✓';this.style.background='var(--muted)'">無料登録してVIP枠を確保</a>
 </div>
 
@@ -485,5 +530,6 @@ const ro = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 </script>
+
 </body>
 </html>
