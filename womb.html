@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -11,10 +10,8 @@
   --black:#060608; --deep:#0a0a0e; --card:#0e0e12; --border:#1c1c26;
   --gold:#c8a84a; --gold-lt:#e6c96a; --gold-dim:rgba(200,168,74,.13);
   --white:#ede9e0; --muted:#50505c; --muted2:#82829a;
-  --red:#e03c3c; --green:#2ecc71;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
 body{
   background:var(--black);color:var(--white);
   font-family:'Noto Sans JP',sans-serif;font-weight:300;
@@ -22,809 +19,140 @@ body{
   border-left:1px solid var(--border);border-right:1px solid var(--border);
   min-height:100vh;
 }
-body::after{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:9998;opacity:.4;
-}
 
 /* ── STICKY HEADER ── */
 .sticky-nav{
-position:fixed;top:0;left:50%;transform:translateX(-50%);
-width:100%;max-width:430px;z-index:100;
-background:rgba(6,6,8,.94);backdrop-filter:blur(20px);
-border-bottom:1px solid var(–border);
-display:flex;align-items:center;justify-content:space-between;
-padding:13px 18px;
-transition:opacity .3s;
+  position:fixed;top:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;z-index:100;
+  background:rgba(6,6,8,.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 18px;
 }
 .back-btn{
-display:flex;align-items:center;gap:8px;
-text-decoration:none;color:var(–muted2);
-font-family:‘DM Mono’,monospace;font-size:10px;letter-spacing:2px;
-text-transform:uppercase;transition:color .2s;
+  display:flex;align-items:center;gap:8px;
+  text-decoration:none;color:var(--muted2);
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;
 }
-.back-btn:active{color:var(–gold)}
-.back-arrow{font-size:16px;color:var(–gold)}
-.nav-rank{
-font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:3px;
-color:var(–gold);border:1px solid var(–gold-dim);
-background:var(–gold-dim);padding:4px 12px;
-border-radius:2px;
-}
-.nav-save{
-font-size:20px;cursor:pointer;color:var(–muted2);
-border:none;background:none;transition:color .2s,transform .2s;
-}
-.nav-save.saved{color:var(–gold);transform:scale(1.1)}
+.nav-rank{ font-family:'DM Mono';font-size:9px;color:var(--gold); }
 
-/* ── HERO PHOTO ── */
-.hero-photo{
-width:100%;height:68vw;max-height:292px;
-position:relative;overflow:hidden;
-margin-top:52px;
-}
-.hero-photo img{
-width:100%;height:100%;object-fit:cover;
-filter:brightness(.75);
-transition:transform 6s ease;
-}
-.hero-photo:hover img{transform:scale(1.04)}
-.hero-overlay{
-position:absolute;inset:0;
-background:linear-gradient(to top,rgba(6,6,8,1) 0%,rgba(6,6,8,.4) 50%,transparent 100%);
-}
-.hero-badge{
-position:absolute;top:14px;right:14px;
-font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:3px;
-color:var(–gold);border:1px solid rgba(200,168,74,.5);
-background:rgba(6,6,8,.7);backdrop-filter:blur(8px);
-padding:5px 12px;text-transform:uppercase;
-}
-.hero-bottom{
-position:absolute;bottom:0;left:0;right:0;
-padding:0 18px 20px;
-}
-.hero-rank{
-font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:3px;
-color:var(–gold);margin-bottom:6px;
-display:flex;align-items:center;gap:8px;
-}
-.hero-rank::before{content:’’;display:block;width:20px;height:1px;background:var(–gold)}
-.hero-name{
-font-family:‘Bebas Neue’,sans-serif;font-size:52px;
-letter-spacing:4px;line-height:.9;color:var(–white);
-}
-.hero-sub{
-font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:2px;
-color:var(–muted2);text-transform:uppercase;margin-top:8px;
-}
+/* ── HERO ── */
+.hero-photo{ width:100%;height:60vw;position:relative;margin-top:52px;background:#111;display:flex;align-items:center;justify-content:center;}
+.hero-photo::after{ content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--black),transparent);}
+.hero-name-plate{ position:absolute;bottom:20px;left:18px; }
+.hero-rank-sub{ font-family:'DM Mono';font-size:9px;color:var(--gold);margin-bottom:4px;letter-spacing:2px;}
+.hero-title{ font-family:'Bebas Neue';font-size:52px;letter-spacing:4px;line-height:0.9;}
 
-/* ── SCORE SECTION ── */
-.score-section{padding:22px 18px 18px}
-.score-grid{
-display:grid;grid-template-columns:repeat(4,1fr);
-gap:2px;margin-top:4px;
-}
-.score-cell{
-background:var(–card);border:1px solid var(–border);
-padding:14px 10px;text-align:center;position:relative;overflow:hidden;
-}
-.score-cell::before{
-content:’’;position:absolute;bottom:0;left:0;right:0;height:2px;
-background:var(–gold);transform:scaleX(0);transform-origin:left;
-transition:transform .6s ease;
-}
-.score-cell.animated::before{transform:scaleX(1)}
-.score-val{
-font-family:‘Bebas Neue’,sans-serif;font-size:34px;
-letter-spacing:1px;line-height:1;
-color:var(–white);margin-bottom:4px;display:block;
-}
-.score-lbl{
-font-family:‘DM Mono’,monospace;font-size:7px;
-letter-spacing:2px;color:var(–muted);text-transform:uppercase;
-}
-.score-bar-wrap{margin-top:6px}
-.score-bar-track{
-height:2px;background:var(–border);border-radius:1px;overflow:hidden;
-}
-.score-bar-fill{
-height:100%;background:var(–gold);border-radius:1px;
-width:0%;transition:width 1s ease .3s;
-}
+/* ── SCORE ── */
+.score-section{padding:22px 18px}
+.score-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.score-cell{ background:var(--card);border:1px solid var(--border);padding:14px 5px;text-align:center;transition:0.3s;}
+.score-val{ font-family:'Bebas Neue';font-size:28px;color:var(--white);display:block;margin-bottom:4px;}
+.score-lbl{ font-family:'DM Mono';font-size:7px;color:var(--muted);letter-spacing:1px;}
 
-/* ── SECTION COMMON ── */
+/* ── SECTION ── */
 .sec{padding:20px 18px}
-.sec-lbl{
-font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:3.5px;
-color:var(–gold);text-transform:uppercase;
-display:flex;align-items:center;gap:8px;margin-bottom:6px;
-}
-.sec-lbl::before{content:’’;width:16px;height:1px;background:var(–gold)}
-.sec-ttl{
-font-family:‘Bebas Neue’,sans-serif;font-size:24px;
-letter-spacing:2px;color:var(–white);line-height:1;margin-bottom:14px;
-}
+.sec-lbl{ font-family:'DM Mono';font-size:8px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.sec-lbl::before{content:'';width:15px;height:1px;background:var(--gold)}
 
-/* ── DESCRIPTION ── */
-.desc-text{
-font-size:12px;color:var(–muted2);line-height:1.9;
-letter-spacing:.3px;
-}
-.desc-text strong{color:var(–white);font-weight:400}
-
-/* ── PHOTO GALLERY ── */
-.gallery{padding:0 18px 20px}
-.gallery-scroll{
-display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
-}
-.gallery-scroll::-webkit-scrollbar{display:none}
-.gallery-img{
-flex-shrink:0;width:200px;height:130px;
-border-radius:3px;overflow:hidden;border:1px solid var(–border);
-position:relative;cursor:pointer;
-}
-.gallery-img img{
-width:100%;height:100%;object-fit:cover;
-filter:brightness(.8);transition:filter .3s,transform .4s;
-}
-.gallery-img:active img{filter:brightness(1);transform:scale(1.02)}
-.gallery-img-placeholder{
-width:100%;height:100%;
-display:flex;align-items:center;justify-content:center;
-flex-direction:column;gap:6px;
-}
-.gallery-img-label{
-position:absolute;bottom:8px;left:10px;
-font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:2px;
-color:rgba(255,255,255,.7);text-transform:uppercase;
-}
-
-/* ── FLOOR GUIDE ── */
-.floor-list{display:flex;flex-direction:column;gap:2px}
+/* ── FLOOR GUIDE (Accordion) ── */
 .floor-card{
-background:var(–card);border:1px solid var(–border);
-padding:16px;position:relative;overflow:hidden;
-cursor:pointer;transition:border-color .2s;
+  background:var(--card);border:1px solid var(--border);padding:16px;
+  margin-bottom:2px;cursor:pointer;
 }
-.floor-card:active{border-color:rgba(200,168,74,.3)}
-.floor-card::before{
-content:’’;position:absolute;left:0;top:0;bottom:0;
-width:2px;background:var(–border);transition:background .2s;
-}
-.floor-card:active::before,.floor-card.open::before{background:var(–gold)}
-.floor-header{display:flex;align-items:center;justify-content:space-between}
-.floor-tag{
-font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:2px;
-color:var(–gold);background:var(–gold-dim);
-border:1px solid var(–gold-dim);padding:3px 8px;
-text-transform:uppercase;border-radius:2px;
-}
-.floor-name{
-font-family:‘Bebas Neue’,sans-serif;font-size:20px;
-letter-spacing:2px;color:var(–white);margin:5px 0 3px;
-}
-.floor-desc{
-font-size:11px;color:var(–muted2);line-height:1.7;
-letter-spacing:.3px;
-}
-.floor-chevron{
-font-size:12px;color:var(–muted);transition:transform .25s;flex-shrink:0;
-}
-.floor-card.open .floor-chevron{transform:rotate(180deg)}
-.floor-detail{
-overflow:hidden;max-height:0;transition:max-height .35s ease;
-}
-.floor-card.open .floor-detail{max-height:200px}
-.floor-detail-inner{
-border-top:1px solid var(–border);margin-top:12px;padding-top:12px;
-font-size:11px;color:var(–muted2);line-height:1.7;
-}
-.floor-detail-inner ul{list-style:none;display:flex;flex-direction:column;gap:4px}
-.floor-detail-inner ul li{display:flex;align-items:center;gap:8px}
-.floor-detail-inner ul li::before{content:’—’;color:var(–gold);font-family:‘DM Mono’,monospace;font-size:9px}
+.floor-header{display:flex;justify-content:space-between;align-items:center;}
+.floor-name{font-family:'Bebas Neue';font-size:20px;letter-spacing:1px;}
+.floor-chevron{font-size:12px;color:var(--muted);transition:0.3s;}
+.floor-desc{font-size:11px;color:var(--muted2);margin-top:5px;line-height:1.6;display:none;}
+.floor-card.open .floor-desc{display:block;}
+.floor-card.open .floor-chevron{transform:rotate(180deg);}
 
-/* ── INFO TABLE ── */
-.info-table{width:100%;border-collapse:collapse}
-.info-table tr{border-bottom:1px solid var(–border)}
-.info-table tr:last-child{border-bottom:none}
-.info-table td{padding:11px 0;vertical-align:top}
-.info-table td:first-child{
-font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:2px;
-color:var(–muted);text-transform:uppercase;width:100px;padding-top:13px;
-}
-.info-table td:last-child{
-font-size:12px;color:var(–white);line-height:1.7;
-letter-spacing:.3px;
-}
-.info-badge{
-display:inline-block;font-family:‘DM Mono’,monospace;
-font-size:8px;letter-spacing:1.5px;padding:3px 8px;
-border-radius:2px;margin-right:4px;margin-bottom:3px;
-text-transform:uppercase;
-}
-.badge-gold{background:var(–gold-dim);border:1px solid rgba(200,168,74,.3);color:var(–gold)}
-.badge-gray{background:rgba(255,255,255,.05);border:1px solid var(–border);color:var(–muted2)}
+/* ── TABLE ── */
+.info-table{width:100%;border-collapse:collapse;margin-top:10px;}
+.info-table tr{border-bottom:1px solid var(--border);}
+.info-table td{padding:12px 0;font-size:12px;}
+.info-table td:first-child{font-family:'DM Mono';font-size:8px;color:var(--muted);width:100px;}
+.info-table td:last-child{text-align:right;}
 
-/* ── WORLD RANKING ── */
-.ranking-timeline{display:flex;flex-direction:column;gap:0}
-.rank-year{
-display:flex;align-items:center;gap:12px;
-padding:10px 0;border-bottom:1px solid var(–border);
-}
-.rank-year:last-child{border-bottom:none}
-.ry-year{
-font-family:‘DM Mono’,monospace;font-size:10px;letter-spacing:2px;
-color:var(–muted);width:44px;flex-shrink:0;
-}
-.ry-bar-wrap{flex:1;height:4px;background:var(–border);border-radius:2px;overflow:hidden}
-.ry-bar{height:100%;background:var(–gold);border-radius:2px;width:0%;transition:width 1.2s ease .4s}
-.ry-pos{
-font-family:‘Bebas Neue’,sans-serif;font-size:20px;
-letter-spacing:1px;color:var(–white);width:40px;text-align:right;flex-shrink:0;
-}
-.ry-medal{font-size:14px;flex-shrink:0}
-.ry-media{
-font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:1.5px;
-color:var(–muted);width:60px;flex-shrink:0;text-align:right;
-}
-
-/* ── ACCESS MAP ── */
-.map-placeholder{
-width:100%;height:160px;
-background:var(–card);border:1px solid var(–border);
-border-radius:3px;overflow:hidden;position:relative;
-display:flex;align-items:center;justify-content:center;
-}
-.map-placeholder::before{
-content:’’;position:absolute;inset:0;
-background:
-radial-gradient(ellipse 60% 50% at 50% 50%,rgba(200,168,74,.06) 0%,transparent 70%),
-repeating-linear-gradient(0deg,transparent,transparent 30px,var(–border) 30px,var(–border) 31px),
-repeating-linear-gradient(90deg,transparent,transparent 30px,var(–border) 31px,var(–border) 31px);
-}
-.map-pin{font-size:28px;position:relative;z-index:1}
-.map-address{
-position:absolute;bottom:12px;left:12px;right:12px;
-font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:1.5px;
-color:var(–white);background:rgba(6,6,8,.85);
-backdrop-filter:blur(8px);
-padding:8px 12px;border-radius:3px;
-border:1px solid var(–border);
-}
-.map-address strong{display:block;color:var(–gold);font-size:8px;letter-spacing:2px;margin-bottom:3px;font-weight:500}
-
-/* ── DRESS CODE ── */
-.dresscode-list{display:flex;flex-direction:column;gap:8px}
-.dc-item{
-display:flex;align-items:flex-start;gap:10px;
-padding:10px 12px;
-background:var(–card);border:1px solid var(–border);border-radius:2px;
-}
-.dc-icon{font-size:16px;flex-shrink:0;margin-top:1px}
-.dc-text{font-size:11px;color:var(–muted2);line-height:1.6;letter-spacing:.3px}
-.dc-text strong{color:var(–white);font-weight:400}
-
-/* ── UPCOMING EVENTS ── */
-.events-list{display:flex;flex-direction:column;gap:2px}
-.event-row{
-background:var(–card);border:1px solid var(–border);
-padding:14px;display:flex;gap:12px;align-items:flex-start;
-cursor:pointer;transition:border-color .2s;
-}
-.event-row:active{border-color:rgba(200,168,74,.3)}
-.event-date-col{flex-shrink:0;text-align:center;width:44px}
-.event-month{font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:2px;color:var(–gold);text-transform:uppercase}
-.event-day{font-family:‘Bebas Neue’,sans-serif;font-size:28px;letter-spacing:1px;line-height:1;color:var(–white)}
-.event-dow{font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:1px;color:var(–muted)}
-.event-info{flex:1}
-.event-name{font-family:‘Bebas Neue’,sans-serif;font-size:16px;letter-spacing:2px;color:var(–white);line-height:1.1;margin-bottom:4px}
-.event-detail{font-size:10px;color:var(–muted2);letter-spacing:.3px;line-height:1.6}
-.event-badge{
-font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:1.5px;
-padding:3px 7px;border-radius:2px;display:inline-block;
-text-transform:uppercase;margin-top:5px;
-}
-.eb-gold{background:var(–gold-dim);border:1px solid rgba(200,168,74,.3);color:var(–gold)}
-.eb-blue{background:rgba(60,120,255,.1);border:1px solid rgba(60,120,255,.3);color:#7aadff}
-.event-price{
-flex-shrink:0;text-align:right;
-font-family:‘Bebas Neue’,sans-serif;font-size:16px;
-color:var(–muted2);
-}
-
-/* ── NOCTEX SCORE DETAIL ── */
-.score-detail-grid{display:flex;flex-direction:column;gap:10px}
-.sdc-item{display:flex;align-items:center;gap:12px}
-.sdc-lbl{
-font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:2px;
-color:var(–muted);text-transform:uppercase;width:76px;flex-shrink:0;
-}
-.sdc-track{flex:1;height:3px;background:var(–border);border-radius:2px;overflow:hidden}
-.sdc-fill{height:100%;background:var(–gold);border-radius:2px;width:0%;transition:width 1s ease .5s}
-.sdc-val{
-font-family:‘Bebas Neue’,sans-serif;font-size:18px;
-letter-spacing:1px;color:var(–white);width:28px;text-align:right;
-}
-
-/* ── CTA ── */
-.cta-box{
-margin:16px 18px 32px;
-background:var(–deep);border:1px solid rgba(200,168,74,.25);
-padding:24px 18px;text-align:center;position:relative;overflow:hidden;
-border-radius:3px;
-}
-.cta-box::before{
-content:’’;position:absolute;inset:0;
-background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,168,74,.05) 0%,transparent 70%);
-}
-.cta-box h3{
-font-family:‘Bebas Neue’,sans-serif;font-size:26px;
-letter-spacing:3px;color:var(–white);margin-bottom:8px;position:relative;
-}
-.cta-box h3 span{color:var(–gold)}
-.cta-box p{font-size:11px;color:var(–muted2);line-height:1.8;margin-bottom:16px;position:relative}
 .cta-btn{
-display:block;width:100%;background:var(–gold);color:#000;border:none;
-padding:13px;font-family:‘DM Mono’,monospace;font-size:10px;
-letter-spacing:3px;text-transform:uppercase;cursor:pointer;
-border-radius:4px;text-decoration:none;transition:background .2s;position:relative;
+  display:block;margin:30px 18px;padding:16px;
+  background:var(--gold);color:var(--black);text-align:center;
+  font-family:'DM Mono';font-size:11px;text-decoration:none;
+  font-weight:bold;letter-spacing:2px;border-radius:2px;
 }
-.cta-btn:active{background:var(–gold-lt)}
 
-/* ── TAB BAR ── */
-.tab-bar{
-position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-width:100%;max-width:430px;z-index:100;
-background:rgba(6,6,8,.97);backdrop-filter:blur(20px);
-border-top:1px solid var(–border);
-display:flex;padding-bottom:env(safe-area-inset-bottom,0px);
-}
-.tab-item{
-flex:1;display:flex;flex-direction:column;align-items:center;
-justify-content:center;padding:9px 0 7px;border:none;background:none;
-cursor:pointer;gap:3px;
-}
-.ti-icon{font-size:18px;color:var(–muted)}
-.ti-lbl{font-family:‘DM Mono’,monospace;font-size:7.5px;letter-spacing:1.5px;color:var(–muted);text-transform:uppercase}
-
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-.rv.on{opacity:1;transform:translateY(0)}
-
-/* ── DIVIDER ── */
-.divider{height:1px;background:var(–border);margin:0 18px}
+.rv{opacity:0;transform:translateY(15px);transition:0.6s ease-out;}
+.rv.on{opacity:1;transform:translateY(0);}
 </style>
-
 </head>
 <body>
 
-<!-- STICKY NAV -->
-
 <div class="sticky-nav">
-  <a href="index.html" class="back-btn"><span class="back-arrow">←</span>BACK</a>
+  <a href="index.html" class="back-btn">← BACK</a>
   <span class="nav-rank">TOKYO #01</span>
-  <button class="nav-save" id="saveBtn" onclick="toggleSave()">♡</button>
+  <span style="color:var(--gold)">♥</span>
 </div>
-
-<!-- HERO PHOTO -->
 
 <div class="hero-photo">
-  <img src="https://images.unsplash.com/photo-1571266028243-d220c6a6f673?w=860&q=80" alt="WOMB Main Floor" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#04040e,#0a0820)'">
-  <div class="hero-overlay"></div>
-  <div class="hero-badge">NOCTEX CERTIFIED ★</div>
-  <div class="hero-bottom">
-    <div class="hero-rank">TOKYO RANKING #01 · ASIA #03</div>
-    <div class="hero-name">WOMB</div>
-    <div class="hero-sub">SHIBUYA · TECHNO / HOUSE / EDM · 4 FLOORS · CAP.1000</div>
+  <div class="hero-name-plate">
+    <div class="hero-rank-sub">RANKING #01 / SHIBUYA</div>
+    <div class="hero-title">WOMB</div>
   </div>
 </div>
-
-<!-- NOCTEX SCORES -->
 
 <div class="score-section rv">
   <div class="sec-lbl">NOCTEX SCORE</div>
-  <div class="score-grid" id="scoreGrid">
-    <div class="score-cell">
-      <span class="score-val" data-val="98">0</span>
-      <div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="98"></div></div></div>
-      <span class="score-lbl">SOUND</span>
-    </div>
-    <div class="score-cell">
-      <span class="score-val" data-val="85">0</span>
-      <div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="85"></div></div></div>
-      <span class="score-lbl">CROWD</span>
-    </div>
-    <div class="score-cell">
-      <span class="score-val" data-val="95">0</span>
-      <div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="95"></div></div></div>
-      <span class="score-lbl">VIBE</span>
-    </div>
-    <div class="score-cell">
-      <span class="score-val" data-val="75">0</span>
-      <div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="75"></div></div></div>
-      <span class="score-lbl">SERVICE</span>
-    </div>
+  <div class="score-grid">
+    <div class="score-cell"><span class="score-val">98</span><span class="score-lbl">SOUND</span></div>
+    <div class="score-cell"><span class="score-val">85</span><span class="score-lbl">CROWD</span></div>
+    <div class="score-cell"><span class="score-val">95</span><span class="score-lbl">VIBE</span></div>
+    <div class="score-cell"><span class="score-val">75</span><span class="score-lbl">SERVICE</span></div>
   </div>
 </div>
-
-<!-- SCORE DETAIL -->
-
-<div class="sec rv">
-  <div class="sec-lbl">SCORE BREAKDOWN</div>
-  <div class="score-detail-grid">
-    <div class="sdc-item"><span class="sdc-lbl">VIP ROI</span><div class="sdc-track"><div class="sdc-fill" data-pct="88"></div></div><span class="sdc-val">88</span></div>
-    <div class="sdc-item"><span class="sdc-lbl">AMBIENT</span><div class="sdc-track"><div class="sdc-fill" data-pct="96"></div></div><span class="sdc-val">96</span></div>
-    <div class="sdc-item"><span class="sdc-lbl">GUEST GDI</span><div class="sdc-track"><div class="sdc-fill" data-pct="82"></div></div><span class="sdc-val">82</span></div>
-    <div class="sdc-item"><span class="sdc-lbl">OPERATION</span><div class="sdc-track"><div class="sdc-fill" data-pct="78"></div></div><span class="sdc-val">78</span></div>
-    <div class="sdc-item"><span class="sdc-lbl">BUZZ MULT.</span><div class="sdc-track"><div class="sdc-fill" data-pct="94"></div></div><span class="sdc-val">94</span></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- DESCRIPTION -->
-
-<div class="sec rv">
-  <div class="sec-lbl">ABOUT</div>
-  <div class="sec-ttl">WOMB TOKYO</div>
-  <div class="desc-text">
-    <strong>2000年、渋谷円山町にオープン</strong>して以来、東京を代表するクラブとして世界に名を轟かせ続けている。<strong>アジア最大級のミラーボール</strong>と世界トップクラスのd&bサウンドシステムを擁し、ライティング・レーザーによるハイクオリティな演出で知られる。
-    <br><br>
-    Mixmag世界クラブランキングで<strong>2005年に世界第2位</strong>を獲得。Solomun、Dubfire、Sven Väthなど世界最高峰のアーティストを次々と招致し、スペイン・イビザ島の「Space Ibiza」やロンドンの「fabric」との共同イベント「<strong>WOMB TOKYO NIGHT</strong>」も開催するなど、東京のシーンを世界に発信し続けている。
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- PHOTO GALLERY -->
-
-<div class="gallery rv">
-  <div class="sec-lbl" style="padding:20px 0 10px">GALLERY</div>
-  <div class="gallery-scroll">
-    <!-- 実際の写真を使用 -->
-    <div class="gallery-img">
-      <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&q=75" alt="Main Floor" onerror="this.parentElement.style.background='linear-gradient(135deg,#04040e,#0a0820)'">
-      <div class="gallery-img-label">2F MAIN FLOOR</div>
-    </div>
-    <div class="gallery-img">
-      <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=75" alt="DJ Booth" onerror="this.parentElement.style.background='linear-gradient(135deg,#0e0408,#1a0810)'">
-      <div class="gallery-img-label">DJ BOOTH</div>
-    </div>
-    <div class="gallery-img">
-      <img src="https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=400&q=75" alt="VIP Lounge" onerror="this.parentElement.style.background='linear-gradient(135deg,#040a08,#081410)'">
-      <div class="gallery-img-label">4F VIP LOUNGE</div>
-    </div>
-    <div class="gallery-img">
-      <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&q=75" alt="Crowd" onerror="this.parentElement.style.background='linear-gradient(135deg,#050508,#0a0a14)'">
-      <div class="gallery-img-label">CROWD</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- FLOOR GUIDE -->
 
 <div class="sec rv">
   <div class="sec-lbl">FLOOR GUIDE</div>
-  <div class="sec-ttl">4 FLOORS</div>
   <div class="floor-list">
-    <div class="floor-card open" onclick="toggleFloor(this)">
-      <div class="floor-header">
-        <span class="floor-tag">4F VIP</span>
-        <span class="floor-chevron">▾</span>
-      </div>
-      <div class="floor-name">VIP LOUNGE</div>
-      <div class="floor-desc">メインフロアをガラス越しに一望できる最上階の専用スペース。</div>
-      <div class="floor-detail">
-        <div class="floor-detail-inner">
-          <ul>
-            <li>テーブルチャージ ¥3,000 / 2時間（飲食代別）</li>
-            <li>専用ボトルサービスあり</li>
-            <li>キャパシティ：約50名</li>
-            <li>プライベートエリア予約可</li>
-          </ul>
-        </div>
-      </div>
+    <div class="floor-card" onclick="this.classList.toggle('open')">
+      <div class="floor-header"><span class="floor-name">4F VIP LOUNGE</span><span class="floor-chevron">▼</span></div>
+      <div class="floor-desc">メインフロアを一望できる最上階。落ち着いた空間でボトルサービスを楽しめる。</div>
     </div>
-    <div class="floor-card" onclick="toggleFloor(this)">
-      <div class="floor-header">
-        <span class="floor-tag">3F PREMIUM</span>
-        <span class="floor-chevron">▾</span>
-      </div>
-      <div class="floor-name">VVIP TERRACE</div>
-      <div class="floor-desc">メインフロアを見下ろせるテラス構造の特等席。会話もできる交流の場。</div>
-      <div class="floor-detail">
-        <div class="floor-detail-inner">
-          <ul>
-            <li>テーブル・ソファシート完備</li>
-            <li>メインフロアを一望する開放的な構造</li>
-            <li>音楽を楽しみながら会話が可能</li>
-          </ul>
-        </div>
-      </div>
+    <div class="floor-card" onclick="this.classList.toggle('open')">
+      <div class="floor-header"><span class="floor-name">3F PREMIUM TERRACE</span><span class="floor-chevron">▼</span></div>
+      <div class="floor-desc">フロアを見下ろすテラス席。音楽と会話を両立できる交流の場。</div>
     </div>
-    <div class="floor-card" onclick="toggleFloor(this)">
-      <div class="floor-header">
-        <span class="floor-tag">2F MAIN</span>
-        <span class="floor-chevron">▾</span>
-      </div>
-      <div class="floor-name">MAIN FLOOR</div>
-      <div class="floor-desc">アジア最大級のミラーボールと4層吹き抜けのアトリウム。世界最高峰の音響空間。</div>
-      <div class="floor-detail">
-        <div class="floor-detail-inner">
-          <ul>
-            <li>d&b Audiotechnik サウンドシステム</li>
-            <li>アジア最大級のミラーボール</li>
-            <li>可動式大型LED × 4台</li>
-            <li>キャパシティ：約700名</li>
-          </ul>
-        </div>
-      </div>
+    <div class="floor-card" onclick="this.classList.toggle('open')">
+      <div class="floor-header"><span class="floor-name">2F MAIN FLOOR</span><span class="floor-chevron">▼</span></div>
+      <div class="floor-desc">4層吹き抜け、アジア最大級のミラーボール。d&bサウンドシステムによる圧倒的没入感。</div>
     </div>
-    <div class="floor-card" onclick="toggleFloor(this)">
-      <div class="floor-header">
-        <span class="floor-tag">B1F LOUNGE</span>
-        <span class="floor-chevron">▾</span>
-      </div>
-      <div class="floor-name">WOMB LOUNGE</div>
-      <div class="floor-desc">ディープでエッジの効いた地下空間。東京ローカルシーンのアーティストが活躍。</div>
-      <div class="floor-detail">
-        <div class="floor-detail-inner">
-          <ul>
-            <li>喫煙可（唯一のスモーキングフロア）</li>
-            <li>ローカル・実験的アーティスト中心</li>
-            <li>よりアンダーグラウンドなサウンド</li>
-          </ul>
-        </div>
-      </div>
+    <div class="floor-card" onclick="this.classList.toggle('open')">
+      <div class="floor-header"><span class="floor-name">B1F WOMB LOUNGE</span><span class="floor-chevron">▼</span></div>
+      <div class="floor-desc">地下のディープな空間。よりエッジの効いたテクノや実験的サウンドが中心。</div>
     </div>
   </div>
 </div>
-
-<div class="divider"></div>
-
-<!-- UPCOMING EVENTS -->
-
-<div class="sec rv">
-  <div class="sec-lbl">SCHEDULE</div>
-  <div class="sec-ttl">UPCOMING EVENTS</div>
-  <div class="events-list">
-    <div class="event-row">
-      <div class="event-date-col">
-        <div class="event-month">MAR</div>
-        <div class="event-day">22</div>
-        <div class="event-dow">SAT</div>
-      </div>
-      <div class="event-info">
-        <div class="event-name">WOMB 25TH ANNIVERSARY</div>
-        <div class="event-detail">Special Guest: Solomun / Dubfire<br>Open 23:00 — Close 05:00</div>
-        <span class="event-badge eb-gold">BOOST EVENT</span>
-      </div>
-      <div class="event-price">¥4,000</div>
-    </div>
-    <div class="event-row">
-      <div class="event-date-col">
-        <div class="event-month">MAR</div>
-        <div class="event-day">29</div>
-        <div class="event-dow">SAT</div>
-      </div>
-      <div class="event-info">
-        <div class="event-name">PICNIC PEOPLE PANIC</div>
-        <div class="event-detail">Dark Psychedelic Techno Night<br>Open 23:00 — Close 05:00</div>
-        <span class="event-badge eb-blue">TECHNO</span>
-      </div>
-      <div class="event-price">¥3,500</div>
-    </div>
-    <div class="event-row">
-      <div class="event-date-col">
-        <div class="event-month">APR</div>
-        <div class="event-day">05</div>
-        <div class="event-dow">SAT</div>
-      </div>
-      <div class="event-info">
-        <div class="event-name">FUTURE TERROR × MERGE</div>
-        <div class="event-detail">DJ Nobu + Special Guests<br>Open 23:00 — Close 05:00</div>
-        <span class="event-badge eb-blue">TECHNO</span>
-      </div>
-      <div class="event-price">¥3,500</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- WORLD RANKING HISTORY -->
-
-<div class="sec rv">
-  <div class="sec-lbl">WORLD RANKING HISTORY</div>
-  <div class="sec-ttl">GLOBAL <span style="color:var(--gold)">RECORD</span></div>
-  <div class="ranking-timeline" id="rankTimeline">
-    <div class="rank-year"><span class="ry-year">2005</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="98"></div></div><span class="ry-pos">#2</span><span class="ry-medal">🥈</span><span class="ry-media">MIXMAG</span></div>
-    <div class="rank-year"><span class="ry-year">2008</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="80"></div></div><span class="ry-pos">#5</span><span class="ry-medal">⭐</span><span class="ry-media">MIXMAG</span></div>
-    <div class="rank-year"><span class="ry-year">2009</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="85"></div></div><span class="ry-pos">#4</span><span class="ry-medal">⭐</span><span class="ry-media">MIXMAG</span></div>
-    <div class="rank-year"><span class="ry-year">2018</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="72"></div></div><span class="ry-pos">TOP</span><span class="ry-medal">🇯🇵</span><span class="ry-media">DJ MAG</span></div>
-    <div class="rank-year"><span class="ry-year">2025</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="100"></div></div><span class="ry-pos">#1</span><span class="ry-medal">🥇</span><span class="ry-media">NOCTEX</span></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ESSENTIAL INFO -->
 
 <div class="sec rv">
   <div class="sec-lbl">ESSENTIAL INFO</div>
   <table class="info-table">
-    <tr>
-      <td>OPENED</td>
-      <td>2000年 / 渋谷円山町</td>
-    </tr>
-    <tr>
-      <td>ADDRESS</td>
-      <td>東京都渋谷区円山町2-16</td>
-    </tr>
-    <tr>
-      <td>HOURS</td>
-      <td>23:00 — 04:30<br><span style="font-size:10px;color:var(--muted)">※イベントにより変動</span></td>
-    </tr>
-    <tr>
-      <td>CAPACITY</td>
-      <td>1,000名</td>
-    </tr>
-    <tr>
-      <td>PRICE</td>
-      <td>¥1,500 — ¥4,000<br><span style="font-size:10px;color:var(--muted)">ドリンク代 ¥600 別途</span></td>
-    </tr>
-    <tr>
-      <td>AGE</td>
-      <td>20歳以上 · 写真付きID必須</td>
-    </tr>
-    <tr>
-      <td>GENRE</td>
-      <td>
-        <span class="info-badge badge-gold">TECHNO</span>
-        <span class="info-badge badge-gold">HOUSE</span>
-        <span class="info-badge badge-gray">EDM</span>
-        <span class="info-badge badge-gray">BASS</span>
-      </td>
-    </tr>
-    <tr>
-      <td>ACCESS</td>
-      <td>JR渋谷駅 徒歩10分<br>京王井の頭線 神泉駅 徒歩5分</td>
-    </tr>
-    <tr>
-      <td>LOCKER</td>
-      <td>300個 · ¥300 / 回</td>
-    </tr>
-    <tr>
-      <td>PHONE</td>
-      <td>03-3408-1111</td>
-    </tr>
+    <tr><td>OPENED</td><td>2000</td></tr>
+    <tr><td>BUDGET</td><td>¥3,000 — ¥5,000</td></tr>
+    <tr><td>ID REQ</td><td>Required (20+)</td></tr>
+    <tr><td>GENRE</td><td>TECHNO / HOUSE / BASS</td></tr>
+    <tr><td>ACCESS</td><td>Shibuya Maruyamacho</td></tr>
   </table>
 </div>
 
-<div class="divider"></div>
-
-<!-- DRESS CODE -->
-
-<div class="sec rv">
-  <div class="sec-lbl">ENTRY RULES</div>
-  <div class="sec-ttl">DRESS CODE</div>
-  <div class="dresscode-list">
-    <div class="dc-item">
-      <span class="dc-icon">✅</span>
-      <div class="dc-text"><strong>推奨：</strong>スマートカジュアル以上。ファッションへの意識が高い来客が多い。外国人・芸能人の来場も多くインターナショナルな雰囲気。</div>
-    </div>
-    <div class="dc-item">
-      <span class="dc-icon">❌</span>
-      <div class="dc-text"><strong>入場不可（男性）：</strong>サンダル（クロックス）、タンクトップ、ジャージ・スウェットなどラフな服装</div>
-    </div>
-    <div class="dc-item">
-      <span class="dc-icon">❌</span>
-      <div class="dc-text"><strong>入場不可（共通）：</strong>タトゥー（ファッションタトゥー含む）が見える服装。ビーチサンダル・クロックス</div>
-    </div>
-    <div class="dc-item">
-      <span class="dc-icon">🪪</span>
-      <div class="dc-text"><strong>ID確認：</strong>全員に実施。運転免許証・パスポート・住基カードいずれか（コピー不可）</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ACCESS MAP -->
-
-<div class="sec rv">
-  <div class="sec-lbl">ACCESS</div>
-  <div class="sec-ttl">HOW TO GET THERE</div>
-  <div class="map-placeholder">
-    <span class="map-pin">📍</span>
-    <div class="map-address">
-      <strong>WOMB TOKYO</strong>
-      東京都渋谷区円山町2-16 · JR渋谷駅 徒歩10分
-    </div>
-  </div>
-  <div style="margin-top:10px;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:3px;">
-    <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--gold);margin-bottom:6px;">ROUTE</div>
-    <div style="font-size:11px;color:var(--muted2);line-height:1.8;">
-      109を右手に道玄坂を5分登り、道玄坂上交番の先を斜め右前方に右折。坂の上のファミリーマート手前の路地を右折後、50m直進した右側のコンクリート打ちっぱなしの建物。
-    </div>
-  </div>
-</div>
-
-<!-- CTA -->
-
-<div class="cta-box rv">
-  <h3>VIP予約は<span>会員限定</span></h3>
-  <p>テーブル先行案内・割引チケット・VIPマッチングはNOCTEX会員だけに届く。</p>
-  <a href="#" class="cta-btn" onclick="this.textContent='登録しました ✓';this.style.background='var(--muted)'">無料登録してVIP枠を確保</a>
-</div>
-
-<!-- TAB BAR -->
-
-<div class="tab-bar">
-  <a href="index.html" style="text-decoration:none;flex:1">
-    <div class="tab-item"><span class="ti-icon">←</span><span class="ti-lbl">RANKING</span></div>
-  </a>
-  <button class="tab-item"><span class="ti-icon">🎉</span><span class="ti-lbl">EVENT</span></button>
-  <button class="tab-item" onclick="toggleSave()"><span class="ti-icon" id="tabSaveIcon">♡</span><span class="ti-lbl">SAVE</span></button>
-  <button class="tab-item"><span class="ti-icon">👤</span><span class="ti-lbl">MY</span></button>
-</div>
+<a href="#" class="cta-btn" onclick="this.innerText='SAVED ✓'">SAVE TO MY PAGE</a>
 
 <script>
-// ── Save toggle ─────────────────────────
-let saved = false;
-function toggleSave() {
-  saved = !saved;
-  const btn = document.getElementById('saveBtn');
-  const ti = document.getElementById('tabSaveIcon');
-  btn.textContent = saved ? '♥' : '♡';
-  btn.classList.toggle('saved', saved);
-  if (ti) { ti.textContent = saved ? '♥' : '♡'; ti.style.color = saved ? 'var(--gold)' : ''; }
-}
-
-// ── Floor accordion ──────────────────────
-function toggleFloor(el) {
-  el.classList.toggle('open');
-}
-
-// ── Scroll reveal + animate scores ──────
-const ro = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('on');
-
-    // score count-up
-    e.target.querySelectorAll('.score-val[data-val]').forEach(el => {
-      const target = parseInt(el.dataset.val);
-      let cur = 0;
-      const step = Math.ceil(target / 30);
-      const t = setInterval(() => {
-        cur = Math.min(cur + step, target);
-        el.textContent = cur;
-        if (cur >= target) clearInterval(t);
-      }, 30);
-    });
-
-    // bar fills
-    e.target.querySelectorAll('.score-bar-fill[data-pct]').forEach(el => {
-      setTimeout(() => { el.style.width = el.dataset.pct + '%'; }, 100);
-    });
-    e.target.querySelectorAll('.sdc-fill[data-pct]').forEach(el => {
-      setTimeout(() => { el.style.width = el.dataset.pct + '%'; }, 200);
-    });
-    e.target.querySelectorAll('.ry-bar[data-pct]').forEach(el => {
-      setTimeout(() => { el.style.width = el.dataset.pct + '%'; }, 300);
-    });
-    e.target.querySelectorAll('.score-cell').forEach((el, i) => {
-      setTimeout(() => el.classList.add('animated'), i * 120 + 200);
-    });
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('on');
   });
 }, { threshold: 0.1 });
-
-document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+document.querySelectorAll('.rv').forEach(el => observer.observe(el));
 </script>
 
 </body>
