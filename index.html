@@ -8,33 +8,32 @@
 <style>
 :root { --black: #060608; --border: #1c1c24; --gold: #c8a84a; --white: #ede9e0; --card: #0e0e12; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--black); color: var(--white); font-family: sans-serif; max-width: 430px; margin: 0 auto; }
+body { background: var(--black); color: var(--white); font-family: sans-serif; max-width: 430px; margin: 0 auto; border: 1px solid var(--border); min-height: 100vh; }
 
-/* ヘッダー */
-.header { padding: 40px 20px 20px; border-bottom: 1px solid var(--border); }
-.top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+/* ヘッダー：確実にボタンが見えるように設計 */
+.header { padding: 40px 20px 20px; background: var(--black); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
+.top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
 .logo { font-family: 'Bebas Neue'; font-size: 32px; color: var(--gold); letter-spacing: 2px; }
 
-/* マイページボタン：目立つようにゴールドの枠線と文字で強調 */
+/* ！！！ここがマイページボタンです！！！ */
 .my-link { 
   font-family: 'DM Mono'; 
-  font-size: 12px; 
-  color: var(--gold); 
+  font-size: 11px; 
+  color: var(--black); 
+  background: var(--gold); /* 背景を金色にして目立たせました */
   text-decoration: none; 
-  border: 1px solid var(--gold); 
-  padding: 8px 16px;
-  letter-spacing: 1px;
+  padding: 8px 14px;
+  font-weight: bold;
+  border-radius: 2px;
   text-transform: uppercase;
 }
 
-.search-container { position: relative; }
-.search-input { width: 100%; background: var(--card); border: 1px solid var(--border); padding: 18px; color: var(--white); font-family: 'DM Mono'; font-size: 14px; outline: none; }
+.search-input { width: 100%; background: var(--card); border: 1px solid var(--border); padding: 15px; color: var(--white); font-family: 'DM Mono'; outline: none; }
 
-/* ランキング */
+/* リスト */
 .rank-item { display: flex; align-items: center; padding: 25px 20px; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
 .rank-num { font-family: 'Bebas Neue'; font-size: 24px; color: #444; width: 45px; }
-.rank-name { font-family: 'Bebas Neue'; font-size: 24px; flex: 1; letter-spacing: 1px; }
-.rank-score { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); }
+.rank-name { font-family: 'Bebas Neue'; font-size: 22px; flex: 1; }
 </style>
 </head>
 <body>
@@ -45,7 +44,7 @@ body { background: var(--black); color: var(--white); font-family: sans-serif; m
     <a href="mypage.html" class="my-link">MY PAGE</a>
   </div>
   <div class="search-container">
-    <input type="text" class="search-input" placeholder="SEARCH VENUE OR GENRE...">
+    <input type="text" class="search-input" placeholder="SEARCH...">
   </div>
 </div>
 
@@ -53,9 +52,9 @@ body { background: var(--black); color: var(--white); font-family: sans-serif; m
   <a href="womb.html" class="rank-item">
     <div class="rank-num">01</div>
     <div class="rank-name">WOMB</div>
-    <div class="rank-score">92</div>
+    <div style="color:var(--gold)">→</div>
   </a>
-  </div>
+</div>
 
 </body>
 </html>
