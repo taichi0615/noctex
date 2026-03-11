@@ -2,59 +2,145 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>NOCTEX | TOKYO 99</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root { --black: #060608; --border: #1c1c24; --gold: #c8a84a; --white: #ede9e0; --card: #0e0e12; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--black); color: var(--white); font-family: sans-serif; max-width: 430px; margin: 0 auto; border: 1px solid var(--border); min-height: 100vh; }
-
-/* ヘッダー：確実にボタンが見えるように設計 */
-.header { padding: 40px 20px 20px; background: var(--black); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
-.top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-.logo { font-family: 'Bebas Neue'; font-size: 32px; color: var(--gold); letter-spacing: 2px; }
-
-/* ！！！ここがマイページボタンです！！！ */
-.my-link { 
-  font-family: 'DM Mono'; 
-  font-size: 11px; 
-  color: var(--black); 
-  background: var(--gold); /* 背景を金色にして目立たせました */
-  text-decoration: none; 
-  padding: 8px 14px;
-  font-weight: bold;
-  border-radius: 2px;
-  text-transform: uppercase;
+:root {
+  --black: #060608;
+  --gold: #c8a84a;
+  --white: #ede9e0;
+  --gray: #1c1c24;
+  --muted: #444444;
 }
 
-.search-input { width: 100%; background: var(--card); border: 1px solid var(--border); padding: 15px; color: var(--white); font-family: 'DM Mono'; outline: none; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  background-color: var(--black); 
+  color: var(--white); 
+  font-family: 'Bebas Neue', sans-serif;
+  max-width: 430px; 
+  margin: 0 auto;
+}
 
-/* リスト */
-.rank-item { display: flex; align-items: center; padding: 25px 20px; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
-.rank-num { font-family: 'Bebas Neue'; font-size: 24px; color: #444; width: 45px; }
-.rank-name { font-family: 'Bebas Neue'; font-size: 22px; flex: 1; }
+/* ヘッダーエリア */
+.header { padding: 30px 20px 10px; }
+.nav-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.logo { color: var(--gold); font-size: 28px; letter-spacing: 2px; text-decoration: none; }
+.my-page-link { color: var(--gold); font-size: 11px; font-family: 'DM Mono'; text-decoration: none; letter-spacing: 1px; }
+
+/* 検索窓（新規追加） */
+.search-box { margin-bottom: 40px; padding: 0 5px; }
+.search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--gray);
+  color: var(--white);
+  font-family: 'DM Mono';
+  font-size: 14px;
+  padding: 10px 0;
+  outline: none;
+}
+.search-input::placeholder { color: var(--muted); }
+
+/* タイトルエリア */
+.hero-section { padding: 0 20px 40px; }
+.sub-title { color: var(--gold); font-size: 14px; letter-spacing: 4px; margin-bottom: 5px; display: block; }
+.main-title { font-size: 64px; line-height: 0.9; margin-bottom: 10px; }
+.editorial-note { color: var(--muted); font-size: 12px; letter-spacing: 1px; }
+
+/* リストエリア */
+.list-container { border-top: 1px solid var(--gray); }
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 30px 20px;
+  border-bottom: 1px solid var(--gray);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s;
+}
+.list-item:active { background: #111; }
+
+.rank-num { font-size: 32px; width: 60px; color: var(--gold); }
+.rank-num.low { color: var(--muted); }
+
+.venue-info { flex: 1; }
+.venue-name { font-size: 26px; letter-spacing: 1px; margin-bottom: 4px; }
+.venue-meta { font-family: 'DM Mono'; font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+
+.score { font-size: 32px; color: var(--white); }
+
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="top-row">
-    <div class="logo">NOCTEX</div>
-    <a href="mypage.html" class="my-link">MY PAGE</a>
-  </div>
-  <div class="search-container">
-    <input type="text" class="search-input" placeholder="SEARCH...">
+  <div class="nav-row">
+    <a href="index.html" class="logo">NOCTEX</a>
+    <a href="mypage.html" class="my-page-link">MY PAGE / SAVED</a>
   </div>
 </div>
 
-<div id="ranking-list">
-  <a href="womb.html" class="rank-item">
-    <div class="rank-num">01</div>
-    <div class="rank-name">WOMB</div>
-    <div style="color:var(--gold)">→</div>
-  </a>
+<div class="hero-section">
+  <span class="sub-title">GLOBAL RANKING</span>
+  <h1 class="main-title">TOKYO 99</h1>
+  <p class="editorial-note">RANKED BY NOCTEX EDITORIAL</p>
 </div>
+
+<div class="search-box">
+  <input type="text" class="search-input" placeholder="SEARCH VENUE OR GENRE..." id="searchInput">
+</div>
+
+<div class="list-container" id="venueList">
+  <a href="womb.html" class="list-item" data-name="WOMB" data-genre="TECHNO">
+    <div class="rank-num">01</div>
+    <div class="venue-info">
+      <div class="venue-name">WOMB</div>
+      <div class="venue-meta">SHIBUYA / TECHNO</div>
+    </div>
+    <div class="score">92</div>
+  </a>
+
+  <div class="list-item" data-name="ZEROTOKYO" data-genre="ALL GENRE">
+    <div class="rank-num">02</div>
+    <div class="venue-info">
+      <div class="venue-name">ZEROTOKYO</div>
+      <div class="venue-meta">SHINJUKU / ALL GENRE</div>
+    </div>
+    <div class="score">89</div>
+  </div>
+
+  <div class="list-item" data-name="VENT" data-genre="HOUSE TECHNO">
+    <div class="rank-num">03</div>
+    <div class="venue-info">
+      <div class="venue-name">VENT</div>
+      <div class="venue-meta">OMOTESANDO / HOUSE / TECHNO</div>
+    </div>
+    <div class="score">87</div>
+  </div>
+</div>
+
+<script>
+  // 簡易検索スクリプト
+  const searchInput = document.getElementById('searchInput');
+  const venueList = document.getElementById('venueList');
+  const items = venueList.getElementsByClassName('list-item');
+
+  searchInput.addEventListener('input', () => {
+    const filter = searchInput.value.toLowerCase();
+    Array.from(items).forEach(item => {
+      const name = item.getAttribute('data-name').toLowerCase();
+      const genre = item.getAttribute('data-genre').toLowerCase();
+      if (name.includes(filter) || genre.includes(filter)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
