@@ -3,66 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NOCTEX | TOKYO MAP & LIST</title>
+<title>NOCTEX | TOKYO INTERACTIVE MAP</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root { 
-  --black: #060608; 
-  --border: #1c1c24; 
-  --gold: #c8a84a; 
-  --white: #ede9e0; 
-  --card: #0e0e12; 
-}
-
+:root { --black: #060608; --border: #1c1c24; --gold: #c8a84a; --white: #ede9e0; --card: #0e0e12; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body { 
-  background: var(--black); 
-  color: var(--white); 
-  font-family: sans-serif; 
-  max-width: 430px; 
-  margin: 0 auto; 
-  overflow: hidden; 
-  height: 100vh; 
-  display: flex; 
-  flex-direction: column; 
-}
+body { background: var(--black); color: var(--white); font-family: sans-serif; max-width: 430px; margin: 0 auto; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
 
 /* ヘッダー */
-.header { 
-  padding: 20px; 
-  border-bottom: 1px solid var(--border); 
-  background: var(--black); 
-  z-index: 100; 
-}
+.header { padding: 20px; border-bottom: 1px solid var(--border); background: var(--black); z-index: 100; }
 .top-row { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: 'Bebas Neue'; font-size: 26px; color: var(--gold); text-decoration: none; letter-spacing: 2px; }
-.my-link { 
-  font-family: 'DM Mono'; 
-  font-size: 10px; 
-  color: var(--gold); 
-  text-decoration: none; 
-  border: 1px solid var(--gold); 
-  padding: 5px 12px;
-}
+.logo { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); text-decoration: none; letter-spacing: 2px; }
+.my-link { font-family: 'DM Mono'; font-size: 10px; color: var(--gold); text-decoration: none; border: 1px solid var(--gold); padding: 4px 10px; }
 
-/* 地図エリア：高さを40%に調整 */
+/* 地図エリア */
 .map-container {
-  flex: 0 0 40%; 
+  flex: 0 0 42%; 
   width: 100%;
   position: relative;
   background: #111;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
 }
-
-/* 地図をダーク化しつつピンを浮き立たせるフィルタ */
 .map-container iframe {
   width: 100%;
   height: 100%;
   border: 0;
-  /* フィルタを少し弱めてピン（赤）が見えやすく調整 */
   filter: grayscale(0.4) invert(0.9) contrast(1.2) brightness(0.9);
+  transition: opacity 0.3s;
 }
 
 /* リストエリア */
@@ -71,38 +39,16 @@ body {
   overflow-y: auto;
   background: var(--black);
 }
+.search-container { padding: 15px 20px; position: sticky; top: 0; background: var(--black); z-index: 50; }
+.search-input { width: 100%; background: var(--card); border: 1px solid var(--border); padding: 12px; color: var(--white); font-family: 'DM Mono'; font-size: 13px; outline: none; }
 
-.search-container { 
-  padding: 15px 20px; 
-  position: sticky; 
-  top: 0; 
-  background: var(--black); 
-  z-index: 50; 
-}
-.search-input { 
-  width: 100%; 
-  background: var(--card); 
-  border: 1px solid var(--border); 
-  padding: 14px; 
-  color: var(--white); 
-  font-family: 'DM Mono'; 
-  font-size: 13px; 
-  outline: none; 
-}
-
-.rank-item { 
-  display: flex; 
-  align-items: center; 
-  padding: 22px 20px; 
-  border-bottom: 1px solid var(--border); 
-  text-decoration: none; 
-  color: inherit; 
-}
-.rank-num { font-family: 'Bebas Neue'; font-size: 26px; color: var(--gold); width: 45px; }
+.rank-item { display: flex; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.2s; }
+.rank-item:active { background: #1a1a1a; }
+.rank-num { font-family: 'Bebas Neue'; font-size: 22px; color: var(--gold); width: 45px; }
 .venue-info { flex: 1; }
-.rank-name { font-family: 'Bebas Neue'; font-size: 22px; letter-spacing: 1px; }
+.rank-name { font-family: 'Bebas Neue'; font-size: 20px; letter-spacing: 1px; }
 .rank-meta { font-family: 'DM Mono'; font-size: 9px; color: #555; }
-.rank-score { font-family: 'Bebas Neue'; font-size: 22px; color: var(--white); }
+.detail-link { color: var(--gold); text-decoration: none; font-size: 18px; margin-left: 15px; padding: 5px; }
 
 </style>
 </head>
@@ -116,51 +62,58 @@ body {
 </div>
 
 <div class="map-container">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.747761041042!2d139.69345037674254!3d35.658580472594695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b50f76906a7%3A0x629126d4a51e5e01!2sWOMB!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" 
+  <iframe id="mainMap"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7479754683745!2d139.69348937644!3d35.65917713111451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5066929949%3A0x629126d4a51e5e01!2sWOMB!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp" 
     allowfullscreen="" loading="lazy">
   </iframe>
 </div>
 
 <div class="list-section">
   <div class="search-container">
-    <input type="text" class="search-input" id="venueSearch" placeholder="SEARCH VENUE OR GENRE...">
+    <input type="text" class="search-input" placeholder="SEARCH VENUE...">
   </div>
 
   <div id="ranking-list">
-    <a href="womb.html" class="rank-item" data-name="WOMB" data-genre="TECHNO">
+    <div class="rank-item" onclick="updateMap('womb')">
       <div class="rank-num">01</div>
       <div class="venue-info">
         <div class="rank-name">WOMB</div>
         <div class="rank-meta">SHIBUYA / TECHNO</div>
       </div>
-      <div class="rank-score">92</div>
-    </a>
+      <a href="womb.html" class="detail-link">→</a>
+    </div>
 
-    <div class="rank-item" data-name="ZEROTOKYO" data-genre="ALL">
+    <div class="rank-item" onclick="updateMap('zero')">
       <div class="rank-num">02</div>
       <div class="venue-info">
         <div class="rank-name">ZEROTOKYO</div>
         <div class="rank-meta">SHINJUKU / ALL GENRE</div>
       </div>
-      <div class="rank-score">89</div>
+      <a href="#" class="detail-link">→</a>
     </div>
   </div>
 </div>
 
 <script>
-  document.getElementById('venueSearch').addEventListener('input', function(e) {
-    const term = e.target.value.toLowerCase();
-    const items = document.querySelectorAll('.rank-item');
-    items.forEach(item => {
-      const name = item.getAttribute('data-name').toLowerCase();
-      if (name.includes(term)) {
-        item.style.display = 'flex';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
+  // 地図を切り替える関数
+  function updateMap(venue) {
+    const map = document.getElementById('mainMap');
+    map.style.opacity = '0.3'; // 切り替え時に少し暗くしてロード感を出します
+    
+    let newSrc = '';
+    if (venue === 'womb') {
+      // WOMBの座標
+      newSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7479754683745!2d139.69348937644!3d35.65917713111451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5066929949%3A0x629126d4a51e5e01!2sWOMB!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp";
+    } else if (venue === 'zero') {
+      // ZEROTOKYOの座標
+      newSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.486241908064!2d139.7000570764415!3d35.69457633041071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d2f6277741d%3A0x582531d27937402!2sZEROTOKYO!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp";
+    }
+    
+    setTimeout(() => {
+      map.src = newSrc;
+      map.style.opacity = '1';
+    }, 200);
+  }
 </script>
 
 </body>
