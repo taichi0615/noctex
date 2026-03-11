@@ -19,7 +19,7 @@ body{
   font-family:'Noto Sans JP',sans-serif;font-weight:300;
   overflow-x:hidden;max-width:430px;margin:0 auto;
   border-left:1px solid var(--border);border-right:1px solid var(--border);
-  min-height:100vh;padding-bottom:100px; /* タブバー用 */
+  min-height:100vh;padding-bottom:100px;
 }
 body::after{
   content:'';position:fixed;inset:0;
@@ -71,22 +71,14 @@ border-radius:2px;
 .score-cell.animated::before{transform:scaleX(1)}
 .score-val{ font-family:'Bebas Neue';font-size:34px;line-height:1;margin-bottom:4px;display:block; }
 .score-lbl{ font-family:'DM Mono';font-size:7px;color:var(--muted);text-transform:uppercase; }
-.score-bar-track{ height:2px;background:var(--border);margin-top:6px;overflow:hidden; }
-.score-bar-fill{ height:100%;background:var(--gold);width:0%;transition:width 1s ease; }
 
-/* ── COMMON ── */
+/* ── SECTION COMMON ── */
 .sec{padding:20px 18px}
 .sec-lbl{ font-family:'DM Mono';font-size:8px;letter-spacing:3.5px;color:var(--gold);display:flex;align-items:center;gap:8px;margin-bottom:6px; }
 .sec-lbl::before{content:'';width:16px;height:1px;background:var(--gold)}
 .sec-ttl{ font-family:'Bebas Neue';font-size:24px;letter-spacing:2px;margin-bottom:14px; }
 .desc-text{ font-size:12px;color:var(--muted2);line-height:1.9; }
 .divider{height:1px;background:var(--border);margin:0 18px}
-
-/* ── GALLERY ── */
-.gallery-scroll{ display:flex;gap:8px;overflow-x:auto;scrollbar-width:none; }
-.gallery-img{ flex-shrink:0;width:200px;height:130px;border-radius:3px;overflow:hidden;border:1px solid var(--border);position:relative; }
-.gallery-img img{ width:100%;height:100%;object-fit:cover;filter:brightness(.8); }
-.gallery-img-label{ position:absolute;bottom:8px;left:10px;font-family:'DM Mono';font-size:8px;color:rgba(255,255,255,.7); }
 
 /* ── FLOOR GUIDE ── */
 .floor-list{display:flex;flex-direction:column;gap:2px}
@@ -97,16 +89,16 @@ border-radius:2px;
 .floor-name{ font-family:'Bebas Neue';font-size:20px;margin:5px 0 3px; }
 .floor-desc{ font-size:11px;color:var(--muted2);line-height:1.7; }
 .floor-detail{ overflow:hidden;max-height:0;transition:max-height .35s ease; }
-.floor-card.open .floor-detail{ max-height:300px; margin-top:12px; border-top:1px solid var(--border); padding-top:12px; }
-.floor-detail ul{ list-style:none; font-size:11px; color:var(--muted2); }
+.floor-card.open .floor-detail{ max-height:350px; margin-top:12px; border-top:1px solid var(--border); padding-top:12px; }
+.floor-detail ul{ list-style:none; font-size:11px; color:var(--muted2); line-height:1.8; }
 .floor-detail li::before{ content:'—'; color:var(--gold); margin-right:8px; }
 
 /* ── INFO TABLE ── */
 .info-table{width:100%;border-collapse:collapse}
-.info-table td{padding:11px 0;vertical-align:top;border-bottom:1px solid var(--border)}
-.info-table td:first-child{ font-family:'DM Mono';font-size:8px;color:var(--muted);width:100px; }
-.info-table td:last-child{ font-size:12px;line-height:1.7; }
-.info-badge{ font-family:'DM Mono';font-size:8px;padding:3px 8px;border-radius:2px;background:var(--gold-dim);color:var(--gold);margin-right:4px; }
+.info-table td{padding:13px 0;vertical-align:top;border-bottom:1px solid var(--border)}
+.info-table td:first-child{ font-family:'DM Mono';font-size:8px;color:var(--muted);width:100px; text-transform:uppercase;}
+.info-table td:last-child{ font-size:12px;line-height:1.7; color:var(--white);}
+.info-badge{ font-family:'DM Mono';font-size:8px;padding:3px 8px;border-radius:2px;background:var(--gold-dim);color:var(--gold);margin-right:4px; margin-bottom:4px; display:inline-block;}
 
 /* ── RANKING HISTORY ── */
 .rank-year{ display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border); }
@@ -115,13 +107,22 @@ border-radius:2px;
 .ry-bar{ height:100%;background:var(--gold);width:0%;transition:width 1.2s ease; }
 .ry-pos{ font-family:'Bebas Neue';font-size:20px;width:40px;text-align:right; }
 
-/* ── DRESS CODE ── */
-.dc-item{ display:flex;gap:10px;padding:12px;background:var(--card);border:1px solid var(--border);margin-bottom:8px; }
-.dc-text{ font-size:11px;color:var(--muted2);line-height:1.6; }
+/* ── DRESS CODE / RULES ── */
+.dc-list{ display:flex; flex-direction:column; gap:8px; }
+.dc-item{ display:flex; gap:12px; padding:15px; background:var(--card); border:1px solid var(--border); }
+.dc-icon{ font-size:16px; flex-shrink:0; }
+.dc-text{ font-size:11px; color:var(--muted2); line-height:1.6; }
+.dc-text strong{ color:var(--white); font-weight:400; }
 
-/* ── ACCESS MAP ── */
+/* ── ACCESS ── */
 .map-placeholder{ width:100%;height:160px;background:var(--card);border:1px solid var(--border);position:relative;display:flex;align-items:center;justify-content:center; }
-.map-address{ position:absolute;bottom:12px;left:12px;right:12px;font-family:'DM Mono';font-size:9px;background:rgba(6,6,8,.85);padding:8px 12px;border:1px solid var(--border); }
+.map-address{ position:absolute;bottom:12px;left:12px;right:12px;font-family:'DM Mono';font-size:9px;background:rgba(6,6,8,.85);padding:8px 12px;border:1px solid var(--border); line-height:1.4;}
+.map-address strong{ display:block; color:var(--gold); margin-bottom:2px; }
+
+/* ── PROS/CONS ── */
+.pc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+.pc-item h4{ font-family:'DM Mono'; font-size:10px; color:var(--gold); margin-bottom:10px; }
+.pc-item p{ font-size:11px; color:var(--muted2); line-height:1.7; }
 
 /* ── TAB BAR ── */
 .tab-bar{ position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:1000;background:rgba(6,6,8,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex; }
@@ -147,34 +148,29 @@ border-radius:2px;
   <div class="hero-bottom">
     <div class="hero-rank">TOKYO RANKING #01 · ASIA #03</div>
     <div class="hero-name">WOMB</div>
-    <div class="hero-sub">SHIBUYA · TECHNO / HOUSE · 4 FLOORS · CAP.1000</div>
+    <div class="hero-sub">SHIBUYA · TECHNO / HOUSE / EDM · 4 FLOORS · CAP.1,000</div>
   </div>
 </div>
 
 <div class="score-section rv">
   <div class="sec-lbl">NOCTEX SCORE</div>
   <div class="score-grid">
-    <div class="score-cell"><span class="score-val" data-val="98">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="98"></div></div><span class="score-lbl">SOUND</span></div>
-    <div class="score-cell"><span class="score-val" data-val="85">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="85"></div></div><span class="score-lbl">CROWD</span></div>
-    <div class="score-cell"><span class="score-val" data-val="95">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="95"></div></div><span class="score-lbl">VIBE</span></div>
-    <div class="score-cell"><span class="score-val" data-val="75">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="75"></div></div><span class="score-lbl">SERVICE</span></div>
+    <div class="score-cell"><span class="score-val" data-val="98">0</span><span class="score-lbl">SOUND</span></div>
+    <div class="score-cell"><span class="score-val" data-val="85">0</span><span class="score-lbl">CROWD</span></div>
+    <div class="score-cell"><span class="score-val" data-val="95">0</span><span class="score-lbl">VIBE</span></div>
+    <div class="score-cell"><span class="score-val" data-val="75">0</span><span class="score-lbl">SERVICE</span></div>
   </div>
 </div>
 
 <div class="sec rv">
   <div class="sec-lbl">ABOUT</div>
-  <div class="sec-ttl">WOMB TOKYO</div>
+  <div class="sec-ttl">THE LEGEND OF SHIBUYA</div>
   <div class="desc-text">
-    <strong>2000年、渋谷円山町にオープン</strong>。アジア最大級のミラーボールとd&bサウンドシステムを擁する。Mixmagで<strong>世界2位</strong>を獲得した実績を持つ、東京テクノシーンの聖地。
+    <strong>2000年、渋谷円山町にオープン</strong>。アジア最大級のミラーボールと世界トップクラスのd&bサウンドシステムを擁し、Mixmag世界ランキングで<strong>世界2位</strong>を獲得した実績を持つ。テクノ・ハウスシーンにおける東京の心臓部。
   </div>
 </div>
 
-<div class="gallery rv">
-  <div class="gallery-scroll">
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400"><div class="gallery-img-label">MAIN FLOOR</div></div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400"><div class="gallery-img-label">DJ BOOTH</div></div>
-  </div>
-</div>
+<div class="divider"></div>
 
 <div class="sec rv">
   <div class="sec-lbl">FLOOR GUIDE</div>
@@ -182,38 +178,88 @@ border-radius:2px;
     <div class="floor-card open" onclick="toggleFloor(this)">
       <div class="floor-header"><span class="floor-tag">4F VIP</span><span class="floor-chevron">▾</span></div>
       <div class="floor-name">VIP LOUNGE</div>
-      <div class="floor-desc">メインフロアを一望できる最上階。ボトルサービスを提供。</div>
-      <div class="floor-detail"><div class="floor-detail-inner"><ul><li>テーブルチャージ ¥3,000〜</li><li>専用ボトルサービスあり</li></ul></div></div>
+      <div class="floor-desc">メインフロアを一望できる最上階の専用スペース。</div>
+      <div class="floor-detail"><div class="floor-detail-inner"><ul>
+        <li>テーブルチャージ ¥3,000 / 2時間（飲食別）</li>
+        <li>専用ボトルサービス・プレミアムな接客</li>
+        <li>喧騒を離れて落ち着けるプライベート空間</li>
+      </ul></div></div>
+    </div>
+    <div class="floor-card" onclick="toggleFloor(this)">
+      <div class="floor-header"><span class="floor-tag">3F PREMIUM</span><span class="floor-chevron">▾</span></div>
+      <div class="floor-name">VVIP TERRACE</div>
+      <div class="floor-desc">フロアを見下ろすテラス構造。会話も楽しめる交流の場。</div>
+      <div class="floor-detail"><div class="floor-detail-inner"><ul>
+        <li>テーブル予約可能。音楽と会話を両立。</li>
+        <li>メインフロア全体を俯瞰する圧倒的視点。</li>
+      </ul></div></div>
     </div>
     <div class="floor-card" onclick="toggleFloor(this)">
       <div class="floor-header"><span class="floor-tag">2F MAIN</span><span class="floor-chevron">▾</span></div>
       <div class="floor-name">MAIN FLOOR</div>
-      <div class="floor-desc">4層吹き抜けのアトリウム。世界最高峰の音響空間。</div>
-      <div class="floor-detail"><div class="floor-detail-inner"><ul><li>d&b Audiotechnik 搭載</li><li>最大収容 約700名</li></ul></div></div>
+      <div class="floor-desc">4層吹き抜けのアトリウム。世界最大級のミラーボール。</div>
+      <div class="floor-detail"><div class="floor-detail-inner"><ul>
+        <li>d&b Audiotechnik フルデジタル演出。</li>
+        <li>可動式大型LED × 4台・高精度レーザー。</li>
+        <li>最大収容 約700名〜。</li>
+      </ul></div></div>
     </div>
+    <div class="floor-card" onclick="toggleFloor(this)">
+      <div class="floor-header"><span class="floor-tag">B1F LOUNGE</span><span class="floor-chevron">▾</span></div>
+      <div class="floor-name">WOMB LOUNGE</div>
+      <div class="floor-desc">ディープな地下空間。ローカルシーンの発信地。</div>
+      <div class="floor-detail"><div class="floor-detail-inner"><ul>
+        <li>唯一の喫煙可能フロア。</li>
+        <li>エッジの効いたテクノ・実験的サウンド。</li>
+      </ul></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="sec rv">
+  <div class="sec-lbl">INSIDER REVIEW</div>
+  <div class="pc-grid">
+    <div class="pc-item"><h4>PROS</h4><p>・世界基準の音響と演出<br>・国際色豊かな客層<br>・回遊性の高い4フロア</p></div>
+    <div class="pc-item"><h4>CONS</h4><p>・週末の極度な混雑<br>・換気が弱く煙がこもる<br>・バーの長蛇の列</p></div>
   </div>
 </div>
 
 <div class="sec rv">
   <div class="sec-lbl">ESSENTIAL INFO</div>
   <table class="info-table">
-    <tr><td>OPENED</td><td>2000年 / 渋谷</td></tr>
-    <tr><td>HOURS</td><td>23:00 — 04:30</td></tr>
-    <tr><td>AGE</td><td>20歳以上 · 写真付きID必須</td></tr>
-    <tr><td>GENRE</td><td><span class="info-badge">TECHNO</span><span class="info-badge">HOUSE</span></td></tr>
+    <tr><td>OPENED</td><td>2000年 / 渋谷円山町</td></tr>
+    <tr><td>HOURS</td><td>23:00 — 04:30（イベントによる）</td></tr>
+    <tr><td>BUDGET</td><td>¥3,000 — ¥5,000（前売利用推奨）</td></tr>
+    <tr><td>GENRE</td><td><span class="info-badge">TECHNO</span><span class="info-badge">HOUSE</span><span class="info-badge">EDM</span></td></tr>
+    <tr><td>ID REQ</td><td>20歳以上 · 写真付きID必須（コピー不可）</td></tr>
+    <tr><td>LOCKER</td><td>約300個 / ¥300</td></tr>
   </table>
 </div>
 
 <div class="sec rv">
   <div class="sec-lbl">ENTRY RULES</div>
-  <div class="dc-item"><span>✅</span><div class="dc-text">スマートカジュアル推奨</div></div>
-  <div class="dc-item"><span>❌</span><div class="dc-text">サンダル・タンクトップ・ジャージ不可</div></div>
+  <div class="dc-list">
+    <div class="dc-item"><span class="dc-icon">✅</span><div class="dc-text"><strong>推奨：</strong>スマートカジュアル。ファッション感度の高い層が多い。</div></div>
+    <div class="dc-item"><span class="dc-icon">❌</span><div class="dc-text"><strong>不可：</strong>サンダル、タンクトップ、ジャージ、露出の激しすぎる服装。</div></div>
+  </div>
 </div>
 
 <div class="sec rv">
   <div class="sec-lbl">ACCESS</div>
-  <div class="map-placeholder">📍<div class="map-address"><strong>WOMB TOKYO</strong>渋谷区円山町2-16</div></div>
-  <div class="desc-text" style="margin-top:12px; font-size:11px;">109を右手に道玄坂を登り、交番先を右折。坂の上の路地を右。</div>
+  <div class="map-placeholder">📍<div class="map-address"><strong>WOMB TOKYO</strong>渋谷区円山町2-16 · 渋谷駅 徒歩10分</div></div>
+  <div class="desc-text" style="margin-top:12px; font-size:11px;">
+    109を右手に道玄坂を登り、道玄坂上交番を右折。坂の上のファミマ手前の路地を右に入り50m直進。
+  </div>
+</div>
+
+<div class="sec rv">
+  <div class="sec-lbl">HISTORY</div>
+  <div class="ranking-timeline">
+    <div class="rank-year"><span class="ry-year">2005</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="98"></div></div><span class="ry-pos">#2</span></div>
+    <div class="rank-year"><span class="ry-year">2025</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="100"></div></div><span class="ry-pos">#1</span></div>
+  </div>
 </div>
 
 <div class="tab-bar">
@@ -232,7 +278,7 @@ const ro = new IntersectionObserver(entries => {
         let cur = 0, target = parseInt(el.dataset.val);
         const t = setInterval(() => { cur = Math.min(cur + 4, target); el.textContent = cur; if (cur >= target) clearInterval(t); }, 30);
       });
-      e.target.querySelectorAll('.score-bar-fill').forEach(el => el.style.width = el.dataset.pct + '%');
+      e.target.querySelectorAll('.ry-bar').forEach(el => el.style.width = el.dataset.pct + '%');
     }
   });
 });
