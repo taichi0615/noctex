@@ -10,45 +10,49 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP', sans-serif; max-width: 430px; margin: 0 auto; line-height: 1.6; }
 
-/* ヒーロービジュアル（一旦、ロゴ風に黒背景へ） */
-.hero { height: 180px; display: flex; align-items: center; justify-content: center; background: var(--black); border-bottom: 1px solid var(--border); }
-.hero-logo { font-family: 'Bebas Neue'; font-size: 40px; color: var(--gold); letter-spacing: 5px; }
-.back-btn { position: absolute; top: 20px; left: 20px; z-index: 100; color: var(--white); text-decoration: none; font-size: 24px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+/* ヘッダー */
+.header { height: 100px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--border); }
+.header-logo { font-family: 'Bebas Neue'; font-size: 32px; color: var(--gold); letter-spacing: 4px; }
+.back-btn { position: absolute; top: 20px; left: 20px; color: var(--white); text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 
-.content { padding: 40px 20px 60px; position: relative; z-index: 10; }
+.content { padding: 30px 20px 60px; }
 .label { font-family: 'DM Mono'; color: var(--gold); font-size: 10px; letter-spacing: 3px; margin-bottom: 5px; }
-.title { font-family: 'Bebas Neue'; font-size: 60px; line-height: 1; margin-bottom: 30px; letter-spacing: 2px; }
+.title { font-family: 'Bebas Neue'; font-size: 56px; line-height: 1; margin-bottom: 30px; }
 
-/* 5軸スコア */
+/* スコア */
 .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 30px; }
-.score-card { background: var(--card); border: 1px solid var(--border); padding: 12px; text-align: center; }
-.s-label { font-family: 'DM Mono'; font-size: 9px; color: var(--gold); margin-bottom: 2px; }
+.score-card { background: var(--card); border: 1px solid var(--border); padding: 15px; text-align: center; }
+.s-label { font-family: 'DM Mono'; font-size: 9px; color: var(--gold); margin-bottom: 5px; }
 .s-val { font-family: 'Bebas Neue'; font-size: 28px; }
 
-.section-head { font-family: 'Bebas Neue'; font-size: 22px; color: var(--gold); margin: 40px 0 15px; border-bottom: 1px solid var(--border); padding-bottom: 5px; letter-spacing: 1px; }
+.section-head { font-family: 'Bebas Neue'; font-size: 20px; color: var(--gold); margin: 40px 0 15px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
 
-/* 【修正：GitHubにアップした画像を読み込む設定】 */
-.floor-infographic { width: 100%; margin: 20px 0; border: 1px solid var(--border); background: #000; }
-.floor-infographic img { width: 100%; height: auto; display: block; }
+/* --- 図解エリア：IMG_2337.jpegを表示 --- */
+.floor-infographic { 
+  width: 100%; 
+  margin: 20px 0; 
+  border: 1px solid var(--border);
+  background: #000;
+}
+.floor-infographic img { 
+  width: 100%; 
+  height: auto; 
+  display: block;
+}
 
 .info-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 30px; }
-.info-table tr { border-bottom: 1px solid var(--border); }
-.info-table th { text-align: left; padding: 12px 0; color: var(--muted); font-family: 'DM Mono'; width: 100px; font-weight: normal; }
-.info-table td { padding: 12px 0; }
+.info-table th { text-align: left; padding: 12px 0; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: normal; }
+.info-table td { padding: 12px 0; border-bottom: 1px solid var(--border); text-align: right; }
 
-.review-box { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; border-top: 1px solid var(--border); padding-top: 20px; }
-.review-item h4 { font-size: 12px; margin-bottom: 8px; color: var(--gold); }
-.review-item p { font-size: 11px; color: #999; }
-
-.btn { display: block; padding: 20px; text-align: center; font-family: 'DM Mono'; font-weight: bold; text-decoration: none; font-size: 14px; margin-top: 40px; background: var(--gold); color: var(--black); }
+.btn-save { display: block; padding: 20px; text-align: center; font-family: 'DM Mono'; font-weight: bold; text-decoration: none; font-size: 14px; margin-top: 40px; background: var(--gold); color: var(--black); }
 
 </style>
 </head>
 <body>
 
-<div class="hero">
+<div class="header">
   <a href="index.html" class="back-btn">←</a>
-  <div class="hero-logo">WOMB</div>
+  <div class="header-logo">WOMB</div>
 </div>
 
 <div class="content">
@@ -64,7 +68,7 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
 
   <div class="section-head">FLOOR GUIDE</div>
   <div class="floor-infographic">
-    <img src="womb-floor.png" alt="WOMB Floor Map">
+    <img src="IMG_2337.jpeg" alt="WOMB Floor Guide">
   </div>
 
   <div class="section-head">ESSENTIAL INFO</div>
@@ -74,18 +78,7 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
     <tr><th>ACCESS</th><td>Shibuya Maruyamacho</td></tr>
   </table>
 
-  <div class="review-box">
-    <div class="review-item">
-      <h4>PROS</h4>
-      <p>・世界基準の演出と音響<br>・回遊性の高い4フロア構成</p>
-    </div>
-    <div class="review-item">
-      <h4>CONS</h4>
-      <p>・人気イベント時の混雑<br>・換気が弱く煙がこもる</p>
-    </div>
-  </div>
-
-  <a href="#" class="btn">SAVE TO MY PAGE</a>
+  <a href="#" class="btn-save" onclick="this.innerText='SAVED ✓'">SAVE TO MY PAGE</a>
 </div>
 
 </body>
