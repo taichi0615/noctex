@@ -10,14 +10,14 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP', sans-serif; max-width: 430px; margin: 0 auto; line-height: 1.6; }
 
-/* ヒーロービジュアル（image_0.pngを統合） */
-.hero { height: 350px; background: url('uploaded:image.png-2b9be158-b643-42eb-9134-8c88667b36a7') center/cover no-repeat; position: relative; border-bottom: 1px solid var(--border); }
-.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--black)); }
-.back-btn { position: absolute; top: 20px; left: 20px; z-index: 100; color: var(--white); text-decoration: none; font-size: 24px; background: rgba(0,0,0,0.5); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+/* ヒーロービジュアル（一旦、ロゴ風に黒背景へ） */
+.hero { height: 180px; display: flex; align-items: center; justify-content: center; background: var(--black); border-bottom: 1px solid var(--border); }
+.hero-logo { font-family: 'Bebas Neue'; font-size: 40px; color: var(--gold); letter-spacing: 5px; }
+.back-btn { position: absolute; top: 20px; left: 20px; z-index: 100; color: var(--white); text-decoration: none; font-size: 24px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 
-.content { padding: 0 20px 60px; position: relative; z-index: 10; margin-top: -30px; }
+.content { padding: 40px 20px 60px; position: relative; z-index: 10; }
 .label { font-family: 'DM Mono'; color: var(--gold); font-size: 10px; letter-spacing: 3px; margin-bottom: 5px; }
-.title { font-family: 'Bebas Neue'; font-size: 60px; line-height: 1; margin-bottom: 20px; letter-spacing: 2px; }
+.title { font-family: 'Bebas Neue'; font-size: 60px; line-height: 1; margin-bottom: 30px; letter-spacing: 2px; }
 
 /* 5軸スコア */
 .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 30px; }
@@ -25,14 +25,12 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
 .s-label { font-family: 'DM Mono'; font-size: 9px; color: var(--gold); margin-bottom: 2px; }
 .s-val { font-family: 'Bebas Neue'; font-size: 28px; }
 
-/* セクションタイトル */
 .section-head { font-family: 'Bebas Neue'; font-size: 22px; color: var(--gold); margin: 40px 0 15px; border-bottom: 1px solid var(--border); padding-bottom: 5px; letter-spacing: 1px; }
 
-/* 【新規】フロア構造図解（image_1.pngを統合） */
-.floor-infographic { width: 100%; margin: 20px 0 40px; border: 1px solid var(--border); }
-.floor-infographic img { width: 100%; height: auto; display: block; filter: contrast(1.1) brightness(1.1); /* ネオンを映えさせる調整 */ }
+/* 【修正：GitHubにアップした画像を読み込む設定】 */
+.floor-infographic { width: 100%; margin: 20px 0; border: 1px solid var(--border); background: #000; }
+.floor-infographic img { width: 100%; height: auto; display: block; }
 
-/* 基本データ・レビュー */
 .info-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 30px; }
 .info-table tr { border-bottom: 1px solid var(--border); }
 .info-table th { text-align: left; padding: 12px 0; color: var(--muted); font-family: 'DM Mono'; width: 100px; font-weight: normal; }
@@ -42,15 +40,16 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
 .review-item h4 { font-size: 12px; margin-bottom: 8px; color: var(--gold); }
 .review-item p { font-size: 11px; color: #999; }
 
-.history-text { font-size: 11px; color: #666; margin-top: 15px; }
-
-.btn { display: block; padding: 18px; text-align: center; font-family: 'DM Mono'; font-weight: bold; text-decoration: none; font-size: 13px; margin-top: 30px; border: 1px solid var(--gold); color: var(--gold); }
+.btn { display: block; padding: 20px; text-align: center; font-family: 'DM Mono'; font-weight: bold; text-decoration: none; font-size: 14px; margin-top: 40px; background: var(--gold); color: var(--black); }
 
 </style>
 </head>
 <body>
 
-<div class="hero"><a href="index.html" class="back-btn">←</a></div>
+<div class="hero">
+  <a href="index.html" class="back-btn">←</a>
+  <div class="hero-logo">WOMB</div>
+</div>
 
 <div class="content">
   <div class="label">RANKING #01 / TOKYO</div>
@@ -63,39 +62,30 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
     <div class="score-card"><div class="s-label">SERVICE</div><div class="s-val">75</div></div>
   </div>
 
+  <div class="section-head">FLOOR GUIDE</div>
+  <div class="floor-infographic">
+    <img src="womb-floor.png" alt="WOMB Floor Map">
+  </div>
+
   <div class="section-head">ESSENTIAL INFO</div>
   <table class="info-table">
     <tr><th>OPENED</th><td>2000</td></tr>
     <tr><th>BUDGET</th><td>¥3,000 - ¥5,000</td></tr>
-    <tr><th>ID REQ.</th><td>Required (20+)</td></tr>
-    <tr><th>ACCESS</th><td>10min walk from Shibuya St.</td></tr>
+    <tr><th>ACCESS</th><td>Shibuya Maruyamacho</td></tr>
   </table>
 
-  <div class="floor-infographic">
-    <img src="uploaded:image.png-c417a809-6f9d-4eb1-b0a9-b50d98e8791a" alt="WOMB Floor Infographic">
-  </div>
-
-  <div class="section-head">INSIDER NOTES</div>
-  <p style="font-size: 14px; margin-bottom: 20px; opacity: 0.9;">
-    世界ランキング常連の東京を代表する大型ベニュー。深夜2時頃にピークを迎える。
-  </p>
-  
   <div class="review-box">
     <div class="review-item">
       <h4>PROS</h4>
-      <p>・世界基準の演出と音響<br>・回遊性の高い4フロア構成<br>・国際色豊かな客層</p>
+      <p>・世界基準の演出と音響<br>・回遊性の高い4フロア構成</p>
     </div>
     <div class="review-item">
       <h4>CONS</h4>
-      <p>・人気イベント時の極度な混雑<br>・換気が弱くスモークがこもる<br>・バーやクロークの長蛇の列</p>
+      <p>・人気イベント時の混雑<br>・換気が弱く煙がこもる</p>
     </div>
   </div>
 
-  <p class="history-text">
-    History: 厳しい風営法時代を潜り抜け、世界のトップDJを招聘し続けてきたナイトライフの象徴。
-  </p>
-
-  <a href="#" class="btn" onclick="this.innerText='SAVED ✓'">SAVE TO MY PAGE</a>
+  <a href="#" class="btn">SAVE TO MY PAGE</a>
 </div>
 
 </body>
