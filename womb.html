@@ -10,8 +10,8 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP', sans-serif; max-width: 430px; margin: 0 auto; line-height: 1.6; }
 
-/* ヒーロービジュアル */
-.hero { height: 350px; background: url('http://googleusercontent.com/image_collection/image_retrieval/9126884235787614179_0') center/cover no-repeat; position: relative; }
+/* ヒーロービジュアル（image_0.pngを統合） */
+.hero { height: 350px; background: url('uploaded:image.png-2b9be158-b643-42eb-9134-8c88667b36a7') center/cover no-repeat; position: relative; border-bottom: 1px solid var(--border); }
 .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--black)); }
 .back-btn { position: absolute; top: 20px; left: 20px; z-index: 100; color: var(--white); text-decoration: none; font-size: 24px; background: rgba(0,0,0,0.5); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 
@@ -28,23 +28,21 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
 /* セクションタイトル */
 .section-head { font-family: 'Bebas Neue'; font-size: 22px; color: var(--gold); margin: 40px 0 15px; border-bottom: 1px solid var(--border); padding-bottom: 5px; letter-spacing: 1px; }
 
-/* 基本データ表 */
-.info-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 20px; }
+/* 【新規】フロア構造図解（image_1.pngを統合） */
+.floor-infographic { width: 100%; margin: 20px 0 40px; border: 1px solid var(--border); }
+.floor-infographic img { width: 100%; height: auto; display: block; filter: contrast(1.1) brightness(1.1); /* ネオンを映えさせる調整 */ }
+
+/* 基本データ・レビュー */
+.info-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 30px; }
 .info-table tr { border-bottom: 1px solid var(--border); }
 .info-table th { text-align: left; padding: 12px 0; color: var(--muted); font-family: 'DM Mono'; width: 100px; font-weight: normal; }
 .info-table td { padding: 12px 0; }
 
-/* フロアガイド */
-.floor-card { background: var(--card); padding: 15px; border-radius: 4px; margin-bottom: 10px; border-left: 2px solid var(--gold); }
-.floor-num { font-family: 'Bebas Neue'; color: var(--gold); margin-bottom: 5px; }
-.floor-desc { font-size: 12px; color: #ccc; }
-
-/* レビュー */
-.review-box { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+.review-box { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; border-top: 1px solid var(--border); padding-top: 20px; }
 .review-item h4 { font-size: 12px; margin-bottom: 8px; color: var(--gold); }
 .review-item p { font-size: 11px; color: #999; }
 
-.history-text { font-size: 12px; color: #888; font-style: italic; margin-top: 10px; }
+.history-text { font-size: 11px; color: #666; margin-top: 15px; }
 
 .btn { display: block; padding: 18px; text-align: center; font-family: 'DM Mono'; font-weight: bold; text-decoration: none; font-size: 13px; margin-top: 30px; border: 1px solid var(--gold); color: var(--gold); }
 
@@ -68,30 +66,18 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
   <div class="section-head">ESSENTIAL INFO</div>
   <table class="info-table">
     <tr><th>OPENED</th><td>2000</td></tr>
-    <tr><th>CAPACITY</th><td>1,000 - 2,000</td></tr>
-    <tr><th>GENRE</th><td>Techno, House, DnB</td></tr>
     <tr><th>BUDGET</th><td>¥3,000 - ¥5,000</td></tr>
     <tr><th>ID REQ.</th><td>Required (20+)</td></tr>
     <tr><th>ACCESS</th><td>10min walk from Shibuya St.</td></tr>
   </table>
 
-  <div class="section-head">FLOOR GUIDE</div>
-  <div class="floor-card">
-    <div class="floor-num">2F MAIN FLOOR</div>
-    <div class="floor-desc">4層吹き抜けのアトリウム。巨大ミラーボールとd&bサウンドシステムによる圧倒的没入感。</div>
-  </div>
-  <div class="floor-card">
-    <div class="floor-num">1F WOMB LOUNGE</div>
-    <div class="floor-desc">アンダーグラウンドな雰囲気。ローカルシーンや別ジャンルのプレイが楽しめる。</div>
-  </div>
-  <div class="floor-card">
-    <div class="floor-num">3F/4F VIP & TERRACE</div>
-    <div class="floor-desc">メインフロアを俯瞰できる。テーブル予約可能（別料金）。</div>
+  <div class="floor-infographic">
+    <img src="uploaded:image.png-c417a809-6f9d-4eb1-b0a9-b50d98e8791a" alt="WOMB Floor Infographic">
   </div>
 
   <div class="section-head">INSIDER NOTES</div>
-  <p style="font-size: 14px; margin-bottom: 20px;">
-    世界的なクラブランキングの常連であり、日本のテクノシーンの心臓部。深夜2時頃にピークを迎える。
+  <p style="font-size: 14px; margin-bottom: 20px; opacity: 0.9;">
+    世界ランキング常連の東京を代表する大型ベニュー。深夜2時頃にピークを迎える。
   </p>
   
   <div class="review-box">
@@ -106,7 +92,7 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
   </div>
 
   <p class="history-text">
-    History: 開業以来、厳しい風営法時代を潜り抜け、世界のトップDJを招聘し続けてきた東京ナイトライフの象徴。
+    History: 厳しい風営法時代を潜り抜け、世界のトップDJを招聘し続けてきたナイトライフの象徴。
   </p>
 
   <a href="#" class="btn" onclick="this.innerText='SAVED ✓'">SAVE TO MY PAGE</a>
