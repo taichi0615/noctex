@@ -19,7 +19,7 @@ body{
   font-family:'Noto Sans JP',sans-serif;font-weight:300;
   overflow-x:hidden;max-width:430px;margin:0 auto;
   border-left:1px solid var(--border);border-right:1px solid var(--border);
-  min-height:100vh;
+  min-height:100vh;padding-bottom:100px; /* タブバー用 */
 }
 body::after{
   content:'';position:fixed;inset:0;
@@ -40,7 +40,7 @@ padding:13px 18px;
 display:flex;align-items:center;gap:8px;
 text-decoration:none;color:var(--muted2);
 font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
-text-transform:uppercase;transition:color .2s;
+text-transform:uppercase;
 }
 .back-arrow{font-size:16px;color:var(--gold)}
 .nav-rank{
@@ -49,207 +49,85 @@ color:var(--gold);border:1px solid var(--gold-dim);
 background:var(--gold-dim);padding:4px 12px;
 border-radius:2px;
 }
-.nav-save{
-font-size:20px;cursor:pointer;color:var(--muted2);
-border:none;background:none;transition:color .2s,transform .2s;
-}
+.nav-save{ font-size:20px;cursor:pointer;color:var(--muted2);border:none;background:none; }
 .nav-save.saved{color:var(--gold);transform:scale(1.1)}
 
 /* ── HERO PHOTO ── */
-.hero-photo{
-width:100%;height:68vw;max-height:292px;
-position:relative;overflow:hidden;
-margin-top:52px;
-}
-.hero-photo img{
-width:100%;height:100%;object-fit:cover;
-filter:brightness(.75);
-transition:transform 6s ease;
-}
-.hero-overlay{
-position:absolute;inset:0;
-background:linear-gradient(to top,rgba(6,6,8,1) 0%,rgba(6,6,8,.4) 50%,transparent 100%);
-}
-.hero-badge{
-position:absolute;top:14px;right:14px;
-font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;
-color:var(--gold);border:1px solid rgba(200,168,74,.5);
-background:rgba(6,6,8,.7);backdrop-filter:blur(8px);
-padding:5px 12px;text-transform:uppercase;
-}
-.hero-bottom{
-position:absolute;bottom:0;left:0;right:0;
-padding:0 18px 20px;
-}
-.hero-rank{
-font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;
-color:var(--gold);margin-bottom:6px;
-display:flex;align-items:center;gap:8px;
-}
-.hero-rank::before{content:'';display:block;width:20px;height:1px;background:var(--gold)}
-.hero-name{
-font-family:'Bebas Neue',sans-serif;font-size:52px;
-letter-spacing:4px;line-height:.9;color:var(--white);
-}
-.hero-sub{
-font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
-color:var(--muted2);text-transform:uppercase;margin-top:8px;
-}
+.hero-photo{ width:100%;height:68vw;max-height:292px;position:relative;overflow:hidden;margin-top:52px; }
+.hero-photo img{ width:100%;height:100%;object-fit:cover;filter:brightness(.75);transition:transform 6s ease; }
+.hero-overlay{ position:absolute;inset:0;background:linear-gradient(to top,rgba(6,6,8,1) 0%,rgba(6,6,8,.4) 50%,transparent 100%); }
+.hero-badge{ position:absolute;top:14px;right:14px;font-family:'DM Mono';font-size:8px;letter-spacing:3px;color:var(--gold);border:1px solid rgba(200,168,74,.5);background:rgba(6,6,8,.7);backdrop-filter:blur(8px);padding:5px 12px; }
+.hero-bottom{ position:absolute;bottom:0;left:0;right:0;padding:0 18px 20px; }
+.hero-rank{ font-family:'DM Mono';font-size:9px;color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:8px; }
+.hero-rank::before{content:'';width:20px;height:1px;background:var(--gold)}
+.hero-name{ font-family:'Bebas Neue';font-size:52px;letter-spacing:4px;line-height:.9; }
+.hero-sub{ font-family:'DM Mono';font-size:9px;color:var(--muted2);margin-top:8px; }
 
-/* ── SCORE SECTION ── */
+/* ── SCORE ── */
 .score-section{padding:22px 18px 18px}
-.score-grid{
-display:grid;grid-template-columns:repeat(4,1fr);
-gap:2px;margin-top:4px;
-}
-.score-cell{
-background:var(--card);border:1px solid var(--border);
-padding:14px 10px;text-align:center;position:relative;overflow:hidden;
-}
-.score-cell::before{
-content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-background:var(--gold);transform:scaleX(0);transform-origin:left;
-transition:transform .6s ease;
-}
+.score-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:2px; }
+.score-cell{ background:var(--card);border:1px solid var(--border);padding:14px 10px;text-align:center;position:relative;overflow:hidden; }
+.score-cell::before{ content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .6s ease; }
 .score-cell.animated::before{transform:scaleX(1)}
-.score-val{
-font-family:'Bebas Neue',sans-serif;font-size:34px;
-letter-spacing:1px;line-height:1;
-color:var(--white);margin-bottom:4px;display:block;
-}
-.score-lbl{
-font-family:'DM Mono',monospace;font-size:7px;
-letter-spacing:2px;color:var(--muted);text-transform:uppercase;
-}
-.score-bar-wrap{margin-top:6px}
-.score-bar-track{
-height:2px;background:var(--border);border-radius:1px;overflow:hidden;
-}
-.score-bar-fill{
-height:100%;background:var(--gold);border-radius:1px;
-width:0%;transition:width 1s ease .3s;
-}
+.score-val{ font-family:'Bebas Neue';font-size:34px;line-height:1;margin-bottom:4px;display:block; }
+.score-lbl{ font-family:'DM Mono';font-size:7px;color:var(--muted);text-transform:uppercase; }
+.score-bar-track{ height:2px;background:var(--border);margin-top:6px;overflow:hidden; }
+.score-bar-fill{ height:100%;background:var(--gold);width:0%;transition:width 1s ease; }
 
-/* ── SCORE DETAIL ── */
+/* ── COMMON ── */
 .sec{padding:20px 18px}
-.sec-lbl{
-font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3.5px;
-color:var(--gold);text-transform:uppercase;
-display:flex;align-items:center;gap:8px;margin-bottom:6px;
-}
+.sec-lbl{ font-family:'DM Mono';font-size:8px;letter-spacing:3.5px;color:var(--gold);display:flex;align-items:center;gap:8px;margin-bottom:6px; }
 .sec-lbl::before{content:'';width:16px;height:1px;background:var(--gold)}
-.sec-ttl{
-font-family:'Bebas Neue',sans-serif;font-size:24px;
-letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:14px;
-}
-.score-detail-grid{display:flex;flex-direction:column;gap:10px}
-.sdc-item{display:flex;align-items:center;gap:12px}
-.sdc-lbl{
-font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;
-color:var(--muted);text-transform:uppercase;width:76px;flex-shrink:0;
-}
-.sdc-track{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
-.sdc-fill{height:100%;background:var(--gold);border-radius:2px;width:0%;transition:width 1s ease .5s}
-.sdc-val{
-font-family:'Bebas Neue',sans-serif;font-size:18px;
-letter-spacing:1px;color:var(--white);width:28px;text-align:right;
-}
-
+.sec-ttl{ font-family:'Bebas Neue';font-size:24px;letter-spacing:2px;margin-bottom:14px; }
+.desc-text{ font-size:12px;color:var(--muted2);line-height:1.9; }
 .divider{height:1px;background:var(--border);margin:0 18px}
 
-/* ── DESCRIPTION ── */
-.desc-text{
-font-size:12px;color:var(--muted2);line-height:1.9;
-letter-spacing:.3px;
-}
-.desc-text strong{color:var(--white);font-weight:400}
-
 /* ── GALLERY ── */
-.gallery{padding:0 18px 20px}
-.gallery-scroll{
-display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
-}
-.gallery-img{
-flex-shrink:0;width:200px;height:130px;
-border-radius:3px;overflow:hidden;border:1px solid var(--border);
-position:relative;
-}
-.gallery-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.8);}
-.gallery-img-label{
-position:absolute;bottom:8px;left:10px;
-font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;
-color:rgba(255,255,255,.7);text-transform:uppercase;
-}
+.gallery-scroll{ display:flex;gap:8px;overflow-x:auto;scrollbar-width:none; }
+.gallery-img{ flex-shrink:0;width:200px;height:130px;border-radius:3px;overflow:hidden;border:1px solid var(--border);position:relative; }
+.gallery-img img{ width:100%;height:100%;object-fit:cover;filter:brightness(.8); }
+.gallery-img-label{ position:absolute;bottom:8px;left:10px;font-family:'DM Mono';font-size:8px;color:rgba(255,255,255,.7); }
 
 /* ── FLOOR GUIDE ── */
 .floor-list{display:flex;flex-direction:column;gap:2px}
-.floor-card{
-background:var(--card);border:1px solid var(--border);
-padding:16px;position:relative;overflow:hidden;
-cursor:pointer;
-}
-.floor-card::before{
-content:'';position:absolute;left:0;top:0;bottom:0;
-width:2px;background:var(--border);transition:background .2s;
-}
-.floor-card.open::before{background:var(--gold)}
+.floor-card{ background:var(--card);border:1px solid var(--border);padding:16px;cursor:pointer; }
+.floor-card.open{ border-left:2px solid var(--gold); }
 .floor-header{display:flex;align-items:center;justify-content:space-between}
-.floor-tag{
-font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;
-color:var(--gold);background:var(--gold-dim);
-padding:3px 8px;text-transform:uppercase;border-radius:2px;
-}
-.floor-name{
-font-family:'Bebas Neue',sans-serif;font-size:20px;
-letter-spacing:2px;color:var(--white);margin:5px 0 3px;
-}
-.floor-desc{font-size:11px;color:var(--muted2);line-height:1.7;}
-.floor-chevron{font-size:12px;color:var(--muted);transition:0.25s;}
-.floor-card.open .floor-chevron{transform:rotate(180deg)}
-.floor-detail{overflow:hidden;max-height:0;transition:max-height .35s ease;}
-.floor-card.open .floor-detail{max-height:250px}
-.floor-detail-inner{border-top:1px solid var(--border);margin-top:12px;padding-top:12px;}
-.floor-detail-inner ul{list-style:none;display:flex;flex-direction:column;gap:4px}
-.floor-detail-inner ul li{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted2)}
-.floor-detail-inner ul li::before{content:'—';color:var(--gold)}
+.floor-tag{ font-family:'DM Mono';font-size:7px;color:var(--gold);background:var(--gold-dim);padding:3px 8px;border-radius:2px; }
+.floor-name{ font-family:'Bebas Neue';font-size:20px;margin:5px 0 3px; }
+.floor-desc{ font-size:11px;color:var(--muted2);line-height:1.7; }
+.floor-detail{ overflow:hidden;max-height:0;transition:max-height .35s ease; }
+.floor-card.open .floor-detail{ max-height:300px; margin-top:12px; border-top:1px solid var(--border); padding-top:12px; }
+.floor-detail ul{ list-style:none; font-size:11px; color:var(--muted2); }
+.floor-detail li::before{ content:'—'; color:var(--gold); margin-right:8px; }
 
 /* ── INFO TABLE ── */
 .info-table{width:100%;border-collapse:collapse}
 .info-table td{padding:11px 0;vertical-align:top;border-bottom:1px solid var(--border)}
-.info-table td:first-child{
-font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;
-color:var(--muted);text-transform:uppercase;width:100px;
-}
-.info-table td:last-child{font-size:12px;color:var(--white);line-height:1.7;}
-.info-badge{
-display:inline-block;font-family:'DM Mono',monospace;
-font-size:8px;letter-spacing:1.5px;padding:3px 8px;
-border-radius:2px;margin-right:4px;text-transform:uppercase;
-background:var(--gold-dim);border:1px solid rgba(200,168,74,.3);color:var(--gold);
-}
+.info-table td:first-child{ font-family:'DM Mono';font-size:8px;color:var(--muted);width:100px; }
+.info-table td:last-child{ font-size:12px;line-height:1.7; }
+.info-badge{ font-family:'DM Mono';font-size:8px;padding:3px 8px;border-radius:2px;background:var(--gold-dim);color:var(--gold);margin-right:4px; }
 
-/* ── WORLD RANKING ── */
-.rank-year{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
-.ry-year{font-family:'DM Mono';font-size:10px;color:var(--muted);width:44px;}
-.ry-bar-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.ry-bar{height:100%;background:var(--gold);width:0%;transition:width 1.2s ease;}
-.ry-pos{font-family:'Bebas Neue';font-size:20px;color:var(--white);width:40px;text-align:right;}
+/* ── RANKING HISTORY ── */
+.rank-year{ display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border); }
+.ry-year{ font-family:'DM Mono';font-size:10px;color:var(--muted);width:44px; }
+.ry-bar-wrap{ flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden; }
+.ry-bar{ height:100%;background:var(--gold);width:0%;transition:width 1.2s ease; }
+.ry-pos{ font-family:'Bebas Neue';font-size:20px;width:40px;text-align:right; }
 
-/* ── CTA / TAB BAR ── */
-.cta-box{margin:16px 18px 100px;background:var(--deep);border:1px solid rgba(200,168,74,.25);padding:24px 18px;text-align:center;border-radius:3px;}
-.cta-btn{display:block;width:100%;background:var(--gold);color:#000;padding:13px;font-family:'DM Mono';font-size:10px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:4px;}
+/* ── DRESS CODE ── */
+.dc-item{ display:flex;gap:10px;padding:12px;background:var(--card);border:1px solid var(--border);margin-bottom:8px; }
+.dc-text{ font-size:11px;color:var(--muted2);line-height:1.6; }
 
-.tab-bar{
-position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-width:100%;max-width:430px;z-index:1000;
-background:rgba(6,6,8,.97);backdrop-filter:blur(20px);
-border-top:1px solid var(--border);display:flex;
-}
-.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 0;text-decoration:none;}
-.ti-icon{font-size:18px;margin-bottom:4px;}
-.ti-lbl{font-family:'DM Mono';font-size:7px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+/* ── ACCESS MAP ── */
+.map-placeholder{ width:100%;height:160px;background:var(--card);border:1px solid var(--border);position:relative;display:flex;align-items:center;justify-content:center; }
+.map-address{ position:absolute;bottom:12px;left:12px;right:12px;font-family:'DM Mono';font-size:9px;background:rgba(6,6,8,.85);padding:8px 12px;border:1px solid var(--border); }
 
-/* ── REVEAL ── */
+/* ── TAB BAR ── */
+.tab-bar{ position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:1000;background:rgba(6,6,8,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex; }
+.tab-item{ flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 0;text-decoration:none; }
+.ti-lbl{ font-family:'DM Mono';font-size:7px;color:var(--muted);margin-top:4px; }
+
 .rv{opacity:0;transform:translateY(16px);transition:0.6s ease}
 .rv.on{opacity:1;transform:translateY(0)}
 </style>
@@ -263,41 +141,31 @@ border-top:1px solid var(--border);display:flex;
 </div>
 
 <div class="hero-photo">
-  <img src="https://images.unsplash.com/photo-1571266028243-d220c6a6f673?w=860&q=80" alt="WOMB" onerror="this.style.display='none';this.parentElement.style.background='#111'">
+  <img src="https://images.unsplash.com/photo-1571266028243-d220c6a6f673?w=860&q=80">
   <div class="hero-overlay"></div>
   <div class="hero-badge">NOCTEX CERTIFIED ★</div>
   <div class="hero-bottom">
-    <div class="hero-rank">TOKYO RANKING #01</div>
+    <div class="hero-rank">TOKYO RANKING #01 · ASIA #03</div>
     <div class="hero-name">WOMB</div>
-    <div class="hero-sub">SHIBUYA · TECHNO / HOUSE · 4 FLOORS</div>
+    <div class="hero-sub">SHIBUYA · TECHNO / HOUSE · 4 FLOORS · CAP.1000</div>
   </div>
 </div>
 
 <div class="score-section rv">
   <div class="sec-lbl">NOCTEX SCORE</div>
   <div class="score-grid">
-    <div class="score-cell"><span class="score-val" data-val="98">0</span><div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="98"></div></div></div><span class="score-lbl">SOUND</span></div>
-    <div class="score-cell"><span class="score-val" data-val="85">0</span><div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="85"></div></div></div><span class="score-lbl">CROWD</span></div>
-    <div class="score-cell"><span class="score-val" data-val="95">0</span><div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="95"></div></div></div><span class="score-lbl">VIBE</span></div>
-    <div class="score-cell"><span class="score-val" data-val="75">0</span><div class="score-bar-wrap"><div class="score-bar-track"><div class="score-bar-fill" data-pct="75"></div></div></div><span class="score-lbl">SERVICE</span></div>
+    <div class="score-cell"><span class="score-val" data-val="98">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="98"></div></div><span class="score-lbl">SOUND</span></div>
+    <div class="score-cell"><span class="score-val" data-val="85">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="85"></div></div><span class="score-lbl">CROWD</span></div>
+    <div class="score-cell"><span class="score-val" data-val="95">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="95"></div></div><span class="score-lbl">VIBE</span></div>
+    <div class="score-cell"><span class="score-val" data-val="75">0</span><div class="score-bar-track"><div class="score-bar-fill" data-pct="75"></div></div><span class="score-lbl">SERVICE</span></div>
   </div>
 </div>
-
-<div class="sec rv">
-  <div class="sec-lbl">SCORE BREAKDOWN</div>
-  <div class="score-detail-grid">
-    <div class="sdc-item"><span class="sdc-lbl">VIP ROI</span><div class="sdc-track"><div class="sdc-fill" data-pct="88"></div></div><span class="sdc-val">88</span></div>
-    <div class="sdc-item"><span class="sdc-lbl">AMBIENT</span><div class="sdc-track"><div class="sdc-fill" data-pct="96"></div></div><span class="sdc-val">96</span></div>
-  </div>
-</div>
-
-<div class="divider"></div>
 
 <div class="sec rv">
   <div class="sec-lbl">ABOUT</div>
   <div class="sec-ttl">WOMB TOKYO</div>
   <div class="desc-text">
-    <strong>2000年、渋谷円山町にオープン</strong>。アジア最大級のミラーボールとd&bサウンドシステムを擁する。Mixmagで世界2位を獲得した実績を持つ。
+    <strong>2000年、渋谷円山町にオープン</strong>。アジア最大級のミラーボールとd&bサウンドシステムを擁する。Mixmagで<strong>世界2位</strong>を獲得した実績を持つ、東京テクノシーンの聖地。
   </div>
 </div>
 
@@ -308,25 +176,21 @@ border-top:1px solid var(--border);display:flex;
   </div>
 </div>
 
-<div class="divider"></div>
-
 <div class="sec rv">
   <div class="sec-lbl">FLOOR GUIDE</div>
   <div class="floor-list">
     <div class="floor-card open" onclick="toggleFloor(this)">
+      <div class="floor-header"><span class="floor-tag">4F VIP</span><span class="floor-chevron">▾</span></div>
+      <div class="floor-name">VIP LOUNGE</div>
+      <div class="floor-desc">メインフロアを一望できる最上階。ボトルサービスを提供。</div>
+      <div class="floor-detail"><div class="floor-detail-inner"><ul><li>テーブルチャージ ¥3,000〜</li><li>専用ボトルサービスあり</li></ul></div></div>
+    </div>
+    <div class="floor-card" onclick="toggleFloor(this)">
       <div class="floor-header"><span class="floor-tag">2F MAIN</span><span class="floor-chevron">▾</span></div>
       <div class="floor-name">MAIN FLOOR</div>
-      <div class="floor-desc">4層吹き抜けのアトリウム。d&bサウンドシステム搭載。</div>
-      <div class="floor-detail"><div class="floor-detail-inner"><ul><li>アジア最大級のミラーボール</li><li>キャパシティ：約700名</li></ul></div></div>
+      <div class="floor-desc">4層吹き抜けのアトリウム。世界最高峰の音響空間。</div>
+      <div class="floor-detail"><div class="floor-detail-inner"><ul><li>d&b Audiotechnik 搭載</li><li>最大収容 約700名</li></ul></div></div>
     </div>
-  </div>
-</div>
-
-<div class="sec rv">
-  <div class="sec-lbl">WORLD RANKING HISTORY</div>
-  <div class="ranking-timeline">
-    <div class="rank-year"><span class="ry-year">2005</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="98"></div></div><span class="ry-pos">#2</span></div>
-    <div class="rank-year"><span class="ry-year">2025</span><div class="ry-bar-wrap"><div class="ry-bar" data-pct="100"></div></div><span class="ry-pos">#1</span></div>
   </div>
 </div>
 
@@ -334,54 +198,45 @@ border-top:1px solid var(--border);display:flex;
   <div class="sec-lbl">ESSENTIAL INFO</div>
   <table class="info-table">
     <tr><td>OPENED</td><td>2000年 / 渋谷</td></tr>
+    <tr><td>HOURS</td><td>23:00 — 04:30</td></tr>
+    <tr><td>AGE</td><td>20歳以上 · 写真付きID必須</td></tr>
     <tr><td>GENRE</td><td><span class="info-badge">TECHNO</span><span class="info-badge">HOUSE</span></td></tr>
   </table>
 </div>
 
-<div class="cta-box rv">
-  <h3>VIP予約は<span>会員限定</span></h3>
-  <a href="#" class="cta-btn">無料登録してVIP枠を確保</a>
+<div class="sec rv">
+  <div class="sec-lbl">ENTRY RULES</div>
+  <div class="dc-item"><span>✅</span><div class="dc-text">スマートカジュアル推奨</div></div>
+  <div class="dc-item"><span>❌</span><div class="dc-text">サンダル・タンクトップ・ジャージ不可</div></div>
+</div>
+
+<div class="sec rv">
+  <div class="sec-lbl">ACCESS</div>
+  <div class="map-placeholder">📍<div class="map-address"><strong>WOMB TOKYO</strong>渋谷区円山町2-16</div></div>
+  <div class="desc-text" style="margin-top:12px; font-size:11px;">109を右手に道玄坂を登り、交番先を右折。坂の上の路地を右。</div>
 </div>
 
 <div class="tab-bar">
-  <a href="index.html" class="tab-item"><span class="ti-icon">🏠</span><span class="ti-lbl">RANKING</span></a>
-  <a href="#" class="tab-item"><span class="ti-icon">🎉</span><span class="ti-lbl">EVENT</span></a>
-  <a href="mypage.html" class="tab-item"><span class="ti-icon">👤</span><span class="ti-lbl">MY</span></a>
+  <a href="index.html" class="tab-item">🏠<span class="ti-lbl">RANKING</span></a>
+  <a href="mypage.html" class="tab-item">👤<span class="ti-lbl">MY</span></a>
 </div>
 
 <script>
-let saved = false;
-function toggleSave() {
-  saved = !saved;
-  document.getElementById('saveBtn').textContent = saved ? '♥' : '♡';
-  document.getElementById('saveBtn').classList.toggle('saved', saved);
-}
-
+function toggleSave() { document.getElementById('saveBtn').textContent = '♥'; }
 function toggleFloor(el) { el.classList.toggle('open'); }
-
 const ro = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('on');
-    e.target.querySelectorAll('.score-val').forEach(el => {
-      const target = parseInt(el.dataset.val);
-      let cur = 0;
-      const t = setInterval(() => {
-        cur = Math.min(cur + 4, target);
-        el.textContent = cur;
-        if (cur >= target) clearInterval(t);
-      }, 30);
-    });
-    e.target.querySelectorAll('.score-bar-fill, .sdc-fill, .ry-bar').forEach(el => {
-      el.style.width = el.dataset.pct + '%';
-    });
-    e.target.querySelectorAll('.score-cell').forEach((el, i) => {
-      setTimeout(() => el.classList.add('animated'), i * 100);
-    });
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      e.target.querySelectorAll('.score-val').forEach(el => {
+        let cur = 0, target = parseInt(el.dataset.val);
+        const t = setInterval(() => { cur = Math.min(cur + 4, target); el.textContent = cur; if (cur >= target) clearInterval(t); }, 30);
+      });
+      e.target.querySelectorAll('.score-bar-fill').forEach(el => el.style.width = el.dataset.pct + '%');
+    }
   });
-}, { threshold: 0.1 });
+});
 document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 </script>
-
 </body>
 </html>
