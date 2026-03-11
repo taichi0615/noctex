@@ -6,27 +6,19 @@
 <title>WOMB | NOCTEX TOKYO #01</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --black: #060608;
-  --card: #0e0e12;
-  --border: #1c1c24;
-  --gold: #c8a84a;
-  --white: #ede9e0;
-}
-
+:root { --black: #060608; --card: #0e0e12; --border: #1c1c24; --gold: #c8a84a; --white: #ede9e0; }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP', sans-serif; max-width: 430px; margin: 0 auto; }
 
-/* ヒーロー画像：WOMBの象徴的なメインフロア */
+/* ヒーロー画像：表示されやすい安定したリンクに変更 */
 .hero { 
-  height: 450px; 
-  background: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-main.jpg') center/cover no-repeat;
+  height: 400px; 
+  background: url('http://googleusercontent.com/image_collection/image_retrieval/9126884235787614179_0') center/cover no-repeat;
   position: relative;
-  border-bottom: 1px solid var(--border);
 }
 .hero::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 20%, rgba(6,6,8,0.8) 70%, var(--black) 100%);
+  background: linear-gradient(to bottom, transparent 20%, var(--black) 98%);
 }
 
 .back-btn {
@@ -34,34 +26,29 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
   width: 44px; height: 44px; background: rgba(0,0,0,0.6);
   border: 1px solid var(--border); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  color: var(--white); text-decoration: none; font-size: 20px; backdrop-filter: blur(5px);
+  color: var(--white); text-decoration: none; font-size: 20px;
 }
 
-.content { padding: 0 25px 60px; margin-top: -60px; position: relative; z-index: 10; }
-.label { font-family: 'DM Mono'; color: var(--gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
-.title { font-family: 'Bebas Neue'; font-size: 64px; line-height: 0.9; letter-spacing: 2px; margin-bottom: 25px; }
+.content { padding: 0 25px 60px; margin-top: -40px; position: relative; z-index: 10; }
+.label { font-family: 'DM Mono'; color: var(--gold); font-size: 11px; letter-spacing: 3px; margin-bottom: 8px; }
+.title { font-family: 'Bebas Neue'; font-size: 64px; line-height: 0.9; margin-bottom: 25px; }
 
-/* 5軸スコア（ビジュアル重視） */
-.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px; }
-.score-card { background: var(--card); border: 1px solid var(--border); padding: 18px; text-align: center; }
-.s-label { font-family: 'DM Mono'; font-size: 10px; color: var(--gold); opacity: 0.7; margin-bottom: 5px; }
-.s-val { font-family: 'Bebas Neue'; font-size: 36px; color: var(--white); }
+/* 5軸スコア */
+.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
+.score-card { background: var(--card); border: 1px solid var(--border); padding: 15px; text-align: center; }
+.s-label { font-family: 'DM Mono'; font-size: 9px; color: var(--gold); margin-bottom: 5px; }
+.s-val { font-family: 'Bebas Neue'; font-size: 32px; }
 
-/* セクションタイトル */
-.section-head { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; letter-spacing: 1px; }
-
-/* ギャラリー（横スクロール） */
-.gallery-wrap { margin: 0 -25px 40px; overflow-x: auto; display: flex; gap: 10px; padding: 0 25px; scroll-snap-type: x mandatory; }
-.gallery-wrap::-webkit-scrollbar { display: none; }
+/* ギャラリー：代替の安定した画像を使用 */
+.section-head { font-family: 'Bebas Neue'; font-size: 20px; color: var(--gold); margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+.gallery-wrap { margin: 0 -25px 30px; overflow-x: auto; display: flex; gap: 10px; padding: 0 25px; }
 .photo-card { 
-  flex: 0 0 300px; height: 200px; border: 1px solid var(--border); 
-  background-size: cover; background-position: center; scroll-snap-align: start;
+  flex: 0 0 280px; height: 180px; border: 1px solid var(--border); 
+  background-size: cover; background-position: center; 
 }
 
-.memo-text { font-size: 14px; line-height: 1.9; color: var(--white); opacity: 0.8; margin-bottom: 40px; }
-
-.cta-group { display: flex; flex-direction: column; gap: 12px; }
-.btn { display: block; padding: 20px; text-align: center; font-family: 'DM Mono'; font-weight: bold; text-decoration: none; font-size: 14px; letter-spacing: 1px; }
+.memo-text { font-size: 13px; line-height: 1.8; opacity: 0.8; margin-bottom: 30px; }
+.btn { display: block; padding: 18px; text-align: center; font-family: 'DM Mono'; font-weight: bold; text-decoration: none; font-size: 13px; margin-bottom: 10px; }
 .btn-save { border: 1px solid var(--gold); color: var(--gold); }
 .btn-map { background: var(--gold); color: var(--black); }
 
@@ -82,25 +69,21 @@ body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP
     <div class="score-card"><div class="s-label">CROWD</div><div class="s-val">85</div></div>
     <div class="score-card"><div class="s-label">VIBE</div><div class="s-val">95</div></div>
     <div class="score-card"><div class="s-label">SERVICE</div><div class="s-val">75</div></div>
-    <div class="score-card" style="grid-column: span 2;"><div class="s-label">LOCATION</div><div class="s-val">70</div></div>
   </div>
 
   <div class="section-head">VISUAL ARCHIVE</div>
   <div class="gallery-wrap">
-    <div class="photo-card" style="background-image: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-main.jpg')"></div>
-    <div class="photo-card" style="background-image: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-1f.jpg')"></div>
-    <div class="photo-card" style="background-image: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-4f.jpg')"></div>
+    <div class="photo-card" style="background-image: url('https://images.unsplash.com/photo-1574391884720-bbc37bb12471?auto=format&fit=crop&w=600&q=80')"></div>
+    <div class="photo-card" style="background-image: url('https://images.unsplash.com/photo-1514525253361-bee8718a3427?auto=format&fit=crop&w=600&q=80')"></div>
   </div>
 
   <div class="section-head">INSIDER NOTES</div>
   <p class="memo-text">
-    渋谷道玄坂の奥に位置する、東京を代表する大型ベニュー。世界最高峰のサウンドシステム「Pioneer Pro Audio」を導入しており、2階メインフロアの没入感は圧倒的。1階のラウンジは赤を基調とした別のコンセプトで、一晩で二つの顔を楽しめるのが魅力。
+    アジア最大級のミラーボールが象徴。音響解像度が極めて高く、低音が物理的に響く。週末の深夜2時頃がピーク。
   </p>
 
-  <div class="cta-group">
-    <a href="#" class="btn btn-save" onclick="this.innerText='SAVED ✓'">SAVE TO MY PAGE</a>
-    <a href="https://maps.app.goo.gl/95N6BAtVp7YpWJ879" target="_blank" class="btn btn-map">GOOGLE MAPS</a>
-  </div>
+  <a href="#" class="btn btn-save" onclick="this.innerText='SAVED ✓'">SAVE TO MY PAGE</a>
+  <a href="https://maps.google.com/?q=WOMB+Tokyo" target="_blank" class="btn btn-map">GOOGLE MAPS</a>
 </div>
 
 </body>
