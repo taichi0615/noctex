@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>WOMB | NOCTEX TOKYO #01</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #060608;
+  --deep: #0a0a0e;
+  --card: #0e0e12;
+  --border: #1c1c24;
+  --gold: #c8a84a;
+  --white: #ede9e0;
+  --muted2: #84849a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: var(--black); color: var(--white); font-family: 'Noto Sans JP', sans-serif; max-width: 430px; margin: 0 auto; overflow-x: hidden; }
+
+/* --- ヒーローセクション（公式写真） --- */
+.hero { 
+  height: 400px; 
+  background: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-main.jpg') center/cover no-repeat;
+  position: relative;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--black) 98%);
+}
+.back-btn {
+  position: absolute; top: 25px; left: 20px; z-index: 100;
+  width: 44px; height: 44px; background: rgba(0,0,0,0.6);
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); text-decoration: none; font-size: 20px;
+}
+
+/* --- コンテンツエリア --- */
+.content { padding: 0 25px 50px; margin-top: -30px; position: relative; z-index: 10; }
+
+.venue-logo { width: 120px; margin-bottom: 15px; }
+.label-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+.label { font-family: 'DM Mono'; color: var(--gold); font-size: 11px; letter-spacing: 2px; }
+.title { font-family: 'Bebas Neue'; font-size: 56px; line-height: 1; letter-spacing: 2px; margin-bottom: 20px; }
+
+/* --- 5軸スコア --- */
+.score-container { margin: 30px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.score-item { background: var(--card); border: 1px solid var(--border); padding: 15px; }
+.s-label { font-family: 'DM Mono'; font-size: 10px; color: var(--muted2); text-transform: uppercase; }
+.s-val { font-family: 'Bebas Neue'; font-size: 32px; color: var(--gold); margin-top: 5px; }
+
+/* --- 辞書スペック（基本情報） --- */
+.spec-box { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 25px 0; margin-bottom: 30px; }
+.spec-grid { display: grid; grid-template-columns: 80px 1fr; gap: 15px; font-size: 13px; }
+.spec-key { color: var(--muted2); font-family: 'DM Mono'; font-size: 11px; }
+.spec-val { color: var(--white); }
+
+/* --- 調査メモ --- */
+.memo-section { margin-bottom: 40px; }
+.section-title { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); margin-bottom: 15px; letter-spacing: 1px; border-left: 3px solid var(--gold); padding-left: 12px; }
+.memo-text { font-size: 14px; line-height: 1.8; color: var(--white); opacity: 0.9; text-align: justify; }
+
+/* --- ギャラリー --- */
+.gallery { display: flex; gap: 10px; overflow-x: auto; margin: 20px -25px; padding: 0 25px; scroll-snap-type: x mandatory; }
+.gallery::-webkit-scrollbar { display: none; }
+.gallery-img { 
+  flex: 0 0 280px; height: 180px; scroll-snap-align: start;
+  background-size: cover; background-position: center; border: 1px solid var(--border);
+}
+
+/* --- アクション --- */
+.save-btn { 
+  display: block; width: 100%; padding: 20px; background: transparent; 
+  border: 1px solid var(--gold); color: var(--gold); text-align: center;
+  font-family: 'DM Mono'; font-weight: bold; text-decoration: none; margin-bottom: 15px;
+}
+.map-btn { 
+  display: block; width: 100%; padding: 20px; background: var(--gold); 
+  color: var(--black); text-align: center; font-family: 'DM Mono'; 
+  font-weight: bold; text-decoration: none; 
+}
+
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <a href="index.html" class="back-btn">←</a>
+</div>
+
+<div class="content">
+  <div class="label-row">
+    <div class="label">RANK #01</div>
+    <div style="width: 40px; hieght: 1px; border-top: 1px solid var(--gold)"></div>
+  </div>
+  <h1 class="title">WOMB</h1>
+  
+  <div class="tag-row" style="display:flex; gap:8px; margin-bottom:30px;">
+    <span style="font-size:10px; border:1px solid var(--border); padding:3px 8px; color:var(--muted2)">TECHNO</span>
+    <span style="font-size:10px; border:1px solid var(--border); padding:3px 8px; color:var(--muted2)">SHIBUYA</span>
+  </div>
+
+  <div class="score-container">
+    <div class="score-item"><div class="s-label">Sound</div><div class="s-val">98</div></div>
+    <div class="score-item"><div class="s-label">Audience</div><div class="s-val">85</div></div>
+    <div class="score-item"><div class="s-label">Vibe</div><div class="s-val">95</div></div>
+    <div class="score-item"><div class="s-label">Service</div><div class="s-val">75</div></div>
+    <div class="score-item" style="grid-column: span 2;"><div class="s-label">Location</div><div class="s-val">70</div></div>
+  </div>
+
+  <div class="spec-box">
+    <div class="spec-grid">
+      <div class="spec-key">CAPACITY</div><div class="spec-val">1,000 Persons</div>
+      <div class="spec-key">SYSTEM</div><div class="spec-val">Pioneer Pro Audio</div>
+      <div class="spec-key">FLOORS</div><div class="spec-val">4 Floors (Main, Lounge, VIP, Terrace)</div>
+      <div class="spec-key">DRESS</div><div class="spec-val">Smart Casual (No Sandals / No Jerseys)</div>
+    </div>
+  </div>
+
+  <div class="memo-section">
+    <h3 class="section-title">INSIDER MEMO</h3>
+    <p class="memo-text">
+      2000年のオープン以来、東京のテクノシーンを象徴する場所。4Fまで吹き抜けのメインフロアと、世界最大級のミラーボールによる演出は圧巻。音響の解像度が非常に高く、低音が体に直接響く感覚は他では味わえない。メインフロアが混雑している時は、1FのWOMB LOUNGEへ移動すると全く異なるバイブスを楽しめる。
+    </p>
+  </div>
+
+  <div class="section-title">GALLERY</div>
+  <div class="gallery">
+    <div class="gallery-img" style="background-image: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-1f.jpg')"></div>
+    <div class="gallery-img" style="background-image: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-4f.jpg')"></div>
+    <div class="gallery-img" style="background-image: url('https://www.womb.co.jp/wp-content/uploads/2015/03/f-main.jpg')"></div>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <a href="#" class="save-btn" id="saveBtn">SAVE TO MY PAGE</a>
+    <a href="https://maps.app.goo.gl/9Qd8C4E6Fz7z7z7z7" target="_blank" class="map-btn">GOOGLE MAPS</a>
+  </div>
+</div>
+
+<script>
+  // お気に入り保存の簡易シミュレーション
+  document.getElementById('saveBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    this.innerText = 'SAVED ✓';
+    this.style.borderColor = '#ede9e0';
+    this.style.color = '#ede9e0';
+  });
+</script>
+
+</body>
+</html>
