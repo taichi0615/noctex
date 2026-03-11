@@ -3,118 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NOCTEX | TOKYO INTERACTIVE MAP</title>
+<title>NOCTEX | LIVE VOLTAGE</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root { --black: #060608; --border: #1c1c24; --gold: #c8a84a; --white: #ede9e0; --card: #0e0e12; }
+:root {
+  --black: #060608; --border: #1c1c26; --gold: #c8a84a;
+  --red: #ff3e3e; --orange: #ff9d3e; --blue: #3e93ff;
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--black); color: var(--white); font-family: sans-serif; max-width: 430px; margin: 0 auto; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+body { background: var(--black); color: #fff; font-family: 'DM Mono', monospace; max-width: 430px; margin: 0 auto; overflow: hidden; }
 
-/* ヘッダー */
-.header { padding: 20px; border-bottom: 1px solid var(--border); background: var(--black); z-index: 100; }
-.top-row { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); text-decoration: none; letter-spacing: 2px; }
-.my-link { font-family: 'DM Mono'; font-size: 10px; color: var(--gold); text-decoration: none; border: 1px solid var(--gold); padding: 4px 10px; }
+/* ── HEADER ── */
+.header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); letter-spacing: 2px; }
 
-/* 地図エリア */
-.map-container {
-  flex: 0 0 42%; 
-  width: 100%;
+/* ── AREA SECTOR ── */
+.area-label { padding: 20px 20px 10px; font-size: 10px; color: var(--gold); letter-spacing: 3px; }
+
+/* ── STORY CIRCLES CONTAINER ── */
+.story-container {
+  display: flex; gap: 20px; padding: 10px 20px 30px;
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.story-container::-webkit-scrollbar { display: none; }
+
+.venue-circle-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 85px; }
+
+/* 密度のリング */
+.circle-border {
+  width: 80px; height: 80px; border-radius: 50%;
+  padding: 3px; display: flex; align-items: center; justify-content: center;
   position: relative;
-  background: #111;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
-}
-.map-container iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  filter: grayscale(0.4) invert(0.9) contrast(1.2) brightness(0.9);
-  transition: opacity 0.3s;
 }
 
-/* リストエリア */
-.list-section {
-  flex: 1;
-  overflow-y: auto;
-  background: var(--black);
+/* 密度に応じた色と光 */
+.density-high { background: conic-gradient(var(--red) 90%, transparent 0); box-shadow: 0 0 15px var(--red); animation: heartbeat 0.8s infinite; }
+.density-mid { background: conic-gradient(var(--orange) 60%, transparent 0); }
+.density-low { background: conic-gradient(var(--blue) 25%, transparent 0); }
+
+.venue-img {
+  width: 100%; height: 100%; border-radius: 50%;
+  background: #111; border: 3px solid var(--black);
+  object-fit: cover;
 }
-.search-container { padding: 15px 20px; position: sticky; top: 0; background: var(--black); z-index: 50; }
-.search-input { width: 100%; background: var(--card); border: 1px solid var(--border); padding: 12px; color: var(--white); font-family: 'DM Mono'; font-size: 13px; outline: none; }
 
-.rank-item { display: flex; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.2s; }
-.rank-item:active { background: #1a1a1a; }
-.rank-num { font-family: 'Bebas Neue'; font-size: 22px; color: var(--gold); width: 45px; }
-.venue-info { flex: 1; }
-.rank-name { font-family: 'Bebas Neue'; font-size: 20px; letter-spacing: 1px; }
-.rank-meta { font-family: 'DM Mono'; font-size: 9px; color: #555; }
-.detail-link { color: var(--gold); text-decoration: none; font-size: 18px; margin-left: 15px; padding: 5px; }
+.venue-name { font-family: 'Bebas Neue'; font-size: 14px; letter-spacing: 1px; text-align: center; }
+.voltage-val { font-size: 8px; color: var(--gold); }
 
+/* ── LIVE DETAIL CARD (選択時に表示される想定) ── */
+.live-detail {
+  margin: 0 20px; padding: 25px; background: var(--border); border-radius: 15px;
+  border-left: 4px solid var(--red);
+}
+.live-info-row { display: flex; justify-content: space-between; align-items: flex-end; }
+.vibe-label { font-family: 'Bebas Neue'; font-size: 42px; line-height: 1; }
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="top-row">
-    <a href="index.html" class="logo">NOCTEX</a>
-    <a href="mypage.html" class="my-link">MY PAGE</a>
-  </div>
+  <div class="logo">NOCTEX LIVE</div>
+  <div style="font-size: 10px;">TOKYO 18:42</div>
 </div>
 
-<div class="map-container">
-  <iframe id="mainMap"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7479754683745!2d139.69348937644!3d35.65917713111451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5066929949%3A0x629126d4a51e5e01!2sWOMB!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp" 
-    allowfullscreen="" loading="lazy">
-  </iframe>
-</div>
-
-<div class="list-section">
-  <div class="search-container">
-    <input type="text" class="search-input" placeholder="SEARCH VENUE...">
-  </div>
-
-  <div id="ranking-list">
-    <div class="rank-item" onclick="updateMap('womb')">
-      <div class="rank-num">01</div>
-      <div class="venue-info">
-        <div class="rank-name">WOMB</div>
-        <div class="rank-meta">SHIBUYA / TECHNO</div>
+<div class="area-label">SHIBUYA AREA</div>
+<div class="story-container">
+  <a href="womb.html" style="text-decoration:none; color:inherit;">
+    <div class="venue-circle-wrap">
+      <div class="circle-border density-high">
+        <img src="https://images.unsplash.com/photo-1571266028243-d220c6a6f673?w=200" class="venue-img">
       </div>
-      <a href="womb.html" class="detail-link">→</a>
+      <div class="venue-name">WOMB</div>
+      <div class="voltage-val">92% VOLTAGE</div>
     </div>
+  </a>
 
-    <div class="rank-item" onclick="updateMap('zero')">
-      <div class="rank-num">02</div>
-      <div class="venue-info">
-        <div class="rank-name">ZEROTOKYO</div>
-        <div class="rank-meta">SHINJUKU / ALL GENRE</div>
-      </div>
-      <a href="#" class="detail-link">→</a>
+  <div class="venue-circle-wrap">
+    <div class="circle-border density-mid">
+      <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=200" class="venue-img">
     </div>
+    <div class="venue-name">ATOM</div>
+    <div class="voltage-val">58% VOLTAGE</div>
+  </div>
+
+  <div class="venue-circle-wrap">
+    <div class="circle-border density-low">
+      <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200" class="venue-img">
+    </div>
+    <div class="venue-name">CÉ LA VI</div>
+    <div class="voltage-val">22% VOLTAGE</div>
   </div>
 </div>
 
-<script>
-  // 地図を切り替える関数
-  function updateMap(venue) {
-    const map = document.getElementById('mainMap');
-    map.style.opacity = '0.3'; // 切り替え時に少し暗くしてロード感を出します
-    
-    let newSrc = '';
-    if (venue === 'womb') {
-      // WOMBの座標
-      newSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7479754683745!2d139.69348937644!3d35.65917713111451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5066929949%3A0x629126d4a51e5e01!2sWOMB!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp";
-    } else if (venue === 'zero') {
-      // ZEROTOKYOの座標
-      newSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.486241908064!2d139.7000570764415!3d35.69457633041071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d2f6277741d%3A0x582531d27937402!2sZEROTOKYO!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp";
-    }
-    
-    setTimeout(() => {
-      map.src = newSrc;
-      map.style.opacity = '1';
-    }, 200);
-  }
-</script>
+<div class="area-label">SHINJUKU AREA</div>
+<div class="story-container">
+  <div class="venue-circle-wrap">
+    <div class="circle-border density-mid">
+      <img src="https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=200" class="venue-img">
+    </div>
+    <div class="venue-name">ZEROTOKYO</div>
+    <div class="voltage-val">65% VOLTAGE</div>
+  </div>
+</div>
+
+<div class="live-detail">
+  <div class="sec-lbl">REAL-TIME INSIGHT</div>
+  <div class="live-info-row">
+    <div>
+      <div class="vibe-label">PEAK VIBE</div>
+      <div style="font-size:10px; color:var(--muted2);">WOMB / SHIBUYA</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:18px; font-family:'Bebas Neue'; color:var(--red);">OVERLOAD</div>
+      <div style="font-size:9px;">ENTRY RESTRICTION RISK: HIGH</div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
