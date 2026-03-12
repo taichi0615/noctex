@@ -1,91 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        :root { --neon-red: #ff3e3e; --glass: rgba(255,255,255,0.1); }
-        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; }
-        
-        /* 掲示板のロック状態 */
-        #chat-room.locked { filter: blur(20px); pointer-events: none; }
-        
-        /* タイマー表示 */
-        #timer { 
-            font-size: 48px; font-weight: bold; color: var(--neon-red);
-            text-shadow: 0 0 10px var(--neon-red); margin: 20px 0;
-            display: none; 
-        }
+<style>
+/* 待機中のコア（核）のアニメーション */
+.ignition-core {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid var(--neon-blue);
+  box-shadow: 0 0 20px var(--neon-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite ease-in-out; /* 人数が増えるほどこの速度を速くする */
+}
 
-        .lock-overlay {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            z-index: 10; width: 80%;
-        }
-        
-        #message-list { height: 300px; overflow-y: auto; text-align: left; padding: 10px; border: 1px solid var(--glass); }
-        .input-area { margin-top: 10px; display: flex; }
-        input { flex: 1; background: #111; border: 1px solid #333; color: #fff; padding: 10px; }
-    </style>
-</head>
-<body>
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.5; box-shadow: 0 0 10px var(--neon-blue); }
+  50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 40px var(--neon-blue); }
+  100% { transform: scale(1); opacity: 0.5; box-shadow: 0 0 10px var(--neon-blue); }
+}
 
-    <div id="status-header">
-        <p>CURRENT AREA: <span id="venue-name">WOMB</span></p>
-        <p id="user-count">DETECTION: 8 / 10</p>
-    </div>
+/* 解放された時のフラッシュ */
+.flash-effect {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: white;
+  z-index: 100;
+  animation: flash-out 0.5s forwards;
+}
 
-    <div id="timer">15:00</div>
-
-    <div id="lock-screen" class="lock-overlay">
-        <div style="font-size: 40px;">🔒</div>
-        <h2>LOCKED</h2>
-        <p>あと2人のチェックインで掲示板が解放されます</p>
-    </div>
-
-    <div id="chat-room" class="locked">
-        <div id="message-list"></div>
-        <div class="input-area">
-            <input type="text" id="msg-input" placeholder="今起きてることを書け...">
-            <button onclick="sendMessage()">SEND</button>
-        </div>
-    </div>
-
-<script>
-    // ロジックのシミュレーション
-    let count = 8;
-    const unlockThreshold = 10;
-    const chatRoom = document.getElementById('chat-room');
-    const lockScreen = document.getElementById('lock-screen');
-    const timerDisplay = document.getElementById('timer');
-
-    // 管理者権限等で人数を増やすシミュレーション
-    function simulateUserJoin() {
-        count++;
-        document.getElementById('user-count').innerText = `DETECTION: ${count} / 10`;
-        if (count >= unlockThreshold) {
-            unlockChat();
-        }
-    }
-
-    function unlockChat() {
-        lockScreen.style.display = 'none';
-        chatRoom.classList.remove('locked');
-        timerDisplay.style.display = 'block';
-        startCountdown(900); // 15分 = 900秒
-    }
-
-    function startCountdown(seconds) {
-        let remaining = seconds;
-        const interval = setInterval(() => {
-            const m = Math.floor(remaining / 60);
-            const s = remaining % 60;
-            timerDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-            remaining--;
-
-            if (remaining < 0) {
-                clearInterval(interval);
-                location.reload(); // 15分経ったら強制リロード（全消去）
-            }
-        }, 1000);
-    }
-</script>
-</body>
-</html>
+@keyframes flash-out {
+  from { opacity: 1; }
+  to { opacity: 0; pointer-events: none; }
+}
+</style>
