@@ -1,130 +1,91 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NOCTEX | LIVE VOLTAGE</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --black: #060608; --border: #1c1c26; --gold: #c8a84a;
-  --red: #ff3e3e; --orange: #ff9d3e; --blue: #3e93ff;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--black); color: #fff; font-family: 'DM Mono', monospace; max-width: 430px; margin: 0 auto; overflow: hidden; }
+    <style>
+        :root { --neon-red: #ff3e3e; --glass: rgba(255,255,255,0.1); }
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; }
+        
+        /* 掲示板のロック状態 */
+        #chat-room.locked { filter: blur(20px); pointer-events: none; }
+        
+        /* タイマー表示 */
+        #timer { 
+            font-size: 48px; font-weight: bold; color: var(--neon-red);
+            text-shadow: 0 0 10px var(--neon-red); margin: 20px 0;
+            display: none; 
+        }
 
-/* ── HEADER ── */
-.header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); letter-spacing: 2px; }
-
-/* ── AREA SECTOR ── */
-.area-label { padding: 20px 20px 10px; font-size: 10px; color: var(--gold); letter-spacing: 3px; }
-
-/* ── STORY CIRCLES CONTAINER ── */
-.story-container {
-  display: flex; gap: 20px; padding: 10px 20px 30px;
-  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
-}
-.story-container::-webkit-scrollbar { display: none; }
-
-.venue-circle-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 85px; }
-
-/* 密度のリング */
-.circle-border {
-  width: 80px; height: 80px; border-radius: 50%;
-  padding: 3px; display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-
-/* 密度に応じた色と光 */
-.density-high { background: conic-gradient(var(--red) 90%, transparent 0); box-shadow: 0 0 15px var(--red); animation: heartbeat 0.8s infinite; }
-.density-mid { background: conic-gradient(var(--orange) 60%, transparent 0); }
-.density-low { background: conic-gradient(var(--blue) 25%, transparent 0); }
-
-.venue-img {
-  width: 100%; height: 100%; border-radius: 50%;
-  background: #111; border: 3px solid var(--black);
-  object-fit: cover;
-}
-
-.venue-name { font-family: 'Bebas Neue'; font-size: 14px; letter-spacing: 1px; text-align: center; }
-.voltage-val { font-size: 8px; color: var(--gold); }
-
-/* ── LIVE DETAIL CARD (選択時に表示される想定) ── */
-.live-detail {
-  margin: 0 20px; padding: 25px; background: var(--border); border-radius: 15px;
-  border-left: 4px solid var(--red);
-}
-.live-info-row { display: flex; justify-content: space-between; align-items: flex-end; }
-.vibe-label { font-family: 'Bebas Neue'; font-size: 42px; line-height: 1; }
-
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-</style>
+        .lock-overlay {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 10; width: 80%;
+        }
+        
+        #message-list { height: 300px; overflow-y: auto; text-align: left; padding: 10px; border: 1px solid var(--glass); }
+        .input-area { margin-top: 10px; display: flex; }
+        input { flex: 1; background: #111; border: 1px solid #333; color: #fff; padding: 10px; }
+    </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="logo">NOCTEX LIVE</div>
-  <div style="font-size: 10px;">TOKYO 18:42</div>
-</div>
-
-<div class="area-label">SHIBUYA AREA</div>
-<div class="story-container">
-  <a href="womb.html" style="text-decoration:none; color:inherit;">
-    <div class="venue-circle-wrap">
-      <div class="circle-border density-high">
-        <img src="https://images.unsplash.com/photo-1571266028243-d220c6a6f673?w=200" class="venue-img">
-      </div>
-      <div class="venue-name">WOMB</div>
-      <div class="voltage-val">92% VOLTAGE</div>
+    <div id="status-header">
+        <p>CURRENT AREA: <span id="venue-name">WOMB</span></p>
+        <p id="user-count">DETECTION: 8 / 10</p>
     </div>
-  </a>
 
-  <div class="venue-circle-wrap">
-    <div class="circle-border density-mid">
-      <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=200" class="venue-img">
-    </div>
-    <div class="venue-name">ATOM</div>
-    <div class="voltage-val">58% VOLTAGE</div>
-  </div>
+    <div id="timer">15:00</div>
 
-  <div class="venue-circle-wrap">
-    <div class="circle-border density-low">
-      <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200" class="venue-img">
+    <div id="lock-screen" class="lock-overlay">
+        <div style="font-size: 40px;">🔒</div>
+        <h2>LOCKED</h2>
+        <p>あと2人のチェックインで掲示板が解放されます</p>
     </div>
-    <div class="venue-name">CÉ LA VI</div>
-    <div class="voltage-val">22% VOLTAGE</div>
-  </div>
-</div>
 
-<div class="area-label">SHINJUKU AREA</div>
-<div class="story-container">
-  <div class="venue-circle-wrap">
-    <div class="circle-border density-mid">
-      <img src="https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=200" class="venue-img">
+    <div id="chat-room" class="locked">
+        <div id="message-list"></div>
+        <div class="input-area">
+            <input type="text" id="msg-input" placeholder="今起きてることを書け...">
+            <button onclick="sendMessage()">SEND</button>
+        </div>
     </div>
-    <div class="venue-name">ZEROTOKYO</div>
-    <div class="voltage-val">65% VOLTAGE</div>
-  </div>
-</div>
 
-<div class="live-detail">
-  <div class="sec-lbl">REAL-TIME INSIGHT</div>
-  <div class="live-info-row">
-    <div>
-      <div class="vibe-label">PEAK VIBE</div>
-      <div style="font-size:10px; color:var(--muted2);">WOMB / SHIBUYA</div>
-    </div>
-    <div style="text-align:right;">
-      <div style="font-size:18px; font-family:'Bebas Neue'; color:var(--red);">OVERLOAD</div>
-      <div style="font-size:9px;">ENTRY RESTRICTION RISK: HIGH</div>
-    </div>
-  </div>
-</div>
+<script>
+    // ロジックのシミュレーション
+    let count = 8;
+    const unlockThreshold = 10;
+    const chatRoom = document.getElementById('chat-room');
+    const lockScreen = document.getElementById('lock-screen');
+    const timerDisplay = document.getElementById('timer');
 
+    // 管理者権限等で人数を増やすシミュレーション
+    function simulateUserJoin() {
+        count++;
+        document.getElementById('user-count').innerText = `DETECTION: ${count} / 10`;
+        if (count >= unlockThreshold) {
+            unlockChat();
+        }
+    }
+
+    function unlockChat() {
+        lockScreen.style.display = 'none';
+        chatRoom.classList.remove('locked');
+        timerDisplay.style.display = 'block';
+        startCountdown(900); // 15分 = 900秒
+    }
+
+    function startCountdown(seconds) {
+        let remaining = seconds;
+        const interval = setInterval(() => {
+            const m = Math.floor(remaining / 60);
+            const s = remaining % 60;
+            timerDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+            remaining--;
+
+            if (remaining < 0) {
+                clearInterval(interval);
+                location.reload(); // 15分経ったら強制リロード（全消去）
+            }
+        }, 1000);
+    }
+</script>
 </body>
 </html>
