@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOCTEX | VIBE TERMINAL</title>
+    <title>NOCTEX | DEMO MODE</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono&display=swap" rel="stylesheet">
     <style>
         :root { --blue: #00f2ff; --red: #ff0055; --bg: #000; }
@@ -12,39 +12,38 @@
         /* ―― 待機状態：コア演出 ―― */
         #ignitor-screen {
             height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.5s;
         }
         .core-container { position: relative; width: 200px; height: 200px; }
         .core-circle {
             position: absolute; width: 100%; height: 100%;
             border: 2px solid var(--blue); border-radius: 50%;
             box-shadow: 0 0 20px var(--blue);
-            /* 人数に応じてアニメーション速度を変える */
-            animation: pulse 2s infinite ease-in-out;
+            animation: pulse 0.5s infinite ease-in-out; /* デモ用に最初から高速 */
         }
         .core-text {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             font-family: 'Bebas Neue'; font-size: 32px; text-align: center;
         }
 
-        /* ―― 解放状態：チャット画面 ―― */
+        /* ―― チャット画面 ―― */
         #chat-screen { display: none; height: 100vh; flex-direction: column; }
         #timer-bar { 
             height: 5px; background: var(--red); width: 100%; 
             box-shadow: 0 0 15px var(--red); transform-origin: left;
         }
         #message-list { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .msg { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 5px; border-left: 2px solid var(--blue); }
+        .msg { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 5px; border-left: 2px solid var(--blue); animation: slideIn 0.3s ease-out; }
 
         @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.3; }
-            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 40px var(--blue); }
-            100% { transform: scale(0.9); opacity: 0.3; }
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 50px var(--blue); }
+            100% { transform: scale(0.95); opacity: 0.5; }
         }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 
         /* フラッシュ演出 */
         .flash { position: fixed; inset: 0; background: #fff; z-index: 100; opacity: 0; pointer-events: none; }
-        .flash.active { animation: flash-anim 0.6s ease-out; }
+        .flash.active { animation: flash-anim 0.8s ease-out; }
         @keyframes flash-anim { 0% { opacity: 1; } 100% { opacity: 0; } }
     </style>
 </head>
@@ -54,31 +53,83 @@
 
     <div id="ignitor-screen">
         <div class="core-container">
-            <div class="core-circle" id="core"></div>
+            <div class="core-circle"></div>
             <div class="core-text">
-                <span id="current-count">0</span> / 10<br>
-                <small style="font-size: 10px; color: var(--blue);">CHARGING VIBE</small>
+                <span id="current-count">9</span> / 10<br>
+                <small style="font-size: 10px; color: var(--blue);">FINAL CHARGE</small>
             </div>
         </div>
-        <p style="margin-top: 40px; font-size: 12px; letter-spacing: 2px; color: #555;">
-            あと<span id="needed-count">10</span>人の接続で熱狂が始まります
+        <p id="status-msg" style="margin-top: 40px; font-size: 12px; letter-spacing: 2px; color: var(--blue);">
+            SYSTEM READY... LAUNCHING IN 3
         </p>
     </div>
 
     <div id="chat-screen">
         <div id="timer-bar"></div>
-        <div style="padding: 10px; font-family: 'Bebas Neue'; color: var(--red); display: flex; justify-content: space-between;">
-            <span>LIVE CHAT OPEN</span>
-            <span id="timer-text">15:00</span>
+        <div style="padding: 10px; font-family: 'Bebas Neue'; color: var(--red); display: flex; justify-content: space-between; align-items: center;">
+            <span><span style="background:var(--red); color:#000; padding:2px 5px; margin-right:5px;">LIVE</span> TERMINAL OPEN</span>
+            <span id="timer-text" style="font-size: 24px;">15:00</span>
         </div>
-        <div id="message-list">
-            </div>
-        <div style="padding: 20px; display: flex; gap: 10px; background: #111;">
-            <input type="text" id="input" style="flex:1; background:none; border:1px solid #333; color:#fff; padding:10px;" placeholder="今を刻め...">
-            <button onclick="sendMsg()" style="background:var(--blue); border:none; padding: 0 20px; font-weight:bold;">SEND</button>
+        <div id="message-list" id="msg-container">
+            <div class="msg">SYSTEM: 掲示板がアンロックされました。</div>
+            <div class="msg">USER_01: 始まったぞ！！</div>
+        </div>
+        <div style="padding: 20px; display: flex; gap: 10px; background: #080808; border-top: 1px solid #222;">
+            <input type="text" id="input" style="flex:1; background:none; border:1px solid #333; color:#fff; padding:12px;" placeholder="メッセージを入力...">
+            <button onclick="sendMsg()" style="background:var(--blue); border:none; padding: 0 25px; font-weight:bold; cursor:pointer;">SEND</button>
         </div>
     </div>
 
-    <script src="chat-logic.js"></script>
+    <script>
+        // 自動起動デモ
+        const statusMsg = document.getElementById('status-msg');
+        let countdown = 3;
+
+        const startDemo = setInterval(() => {
+            countdown--;
+            if (countdown > 0) {
+                statusMsg.innerText = `SYSTEM READY... LAUNCHING IN ${countdown}`;
+            } else {
+                clearInterval(startDemo);
+                launchChat();
+            }
+        }, 1000);
+
+        function launchChat() {
+            document.getElementById('flash-effect').classList.add('active');
+            setTimeout(() => {
+                document.getElementById('ignitor-screen').style.display = 'none';
+                document.getElementById('chat-screen').style.display = 'flex';
+                startTimer();
+            }, 300);
+        }
+
+        function startTimer() {
+            let timeLeft = 900; // 15分
+            const bar = document.getElementById('timer-bar');
+            const text = document.getElementById('timer-text');
+
+            setInterval(() => {
+                timeLeft--;
+                const m = Math.floor(timeLeft / 60);
+                const s = timeLeft % 60;
+                text.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                bar.style.transform = `scaleX(${timeLeft / 900})`;
+                if (timeLeft <= 0) location.reload();
+            }, 1000);
+        }
+
+        function sendMsg() {
+            const input = document.getElementById('input');
+            if (!input.value) return;
+            const msgList = document.getElementById('message-list');
+            const div = document.createElement('div');
+            div.className = 'msg';
+            div.innerText = `YOU: ${input.value}`;
+            msgList.appendChild(div);
+            msgList.scrollTop = msgList.scrollHeight;
+            input.value = '';
+        }
+    </script>
 </body>
 </html>
